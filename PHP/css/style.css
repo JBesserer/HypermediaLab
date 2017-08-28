@@ -1,0 +1,106 @@
+body{
+    font-family: Century Gothic;
+}
+header{
+    background: linear-gradient(#09AAc1,#FFFAFB);
+}
+.topbar-nav {
+    padding: 35px;
+}
+.identify,.panier,.deconnecter{
+    float:right;
+    color: #FFFAFB;
+    font-size:10px;
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+.profile,.catalogue, .facture, .service{
+    float:right;
+    font-size:14px;
+    font-weight: bold;
+    color: #FF9F07;
+    padding-right: 15px;
+    padding-top: 30px;
+    text-decoration: none;
+}
+
+.oublie{
+    font-weight: bold;
+}
+
+.oublie:link {
+    color: #FF9F07;
+}
+
+.oublie:visited{
+    color: #FF4A07;
+}
+
+#loupe{
+    float:right;
+    border-style: solid;
+    margin-right: 15px;
+    margin-top: 25px;
+    padding-left: 100px;
+    border: 1px solid black;
+}
+
+.profile:active,.catalogue:active{
+    color: #FF4A07;
+}
+
+.infoLogin{
+    text-align:center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.connexion, #inscrire{
+    background:url(../images/icones/bouton.png) no-repeat;
+    cursor:pointer;
+    color: #FFFAFB;
+    width: 180px;
+    height: 57px;
+    border: none;
+}
+
+#courriel, #motdepasse{
+    font-weight: bold;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #FF9F07;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #FF9F07;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #FF9F07;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #FF9F07;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #FF9F07;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+#theForm{
+    text-align: center;
+}
+
+#facebook{
+    width:200px;
+    length: 50px;
+}
+
+
+
+
