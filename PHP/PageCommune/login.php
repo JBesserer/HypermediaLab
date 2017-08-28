@@ -10,7 +10,14 @@ if (session_status() == true) {
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/style.css">       
+        <?php
+        if(isset($_GET['erreur']))
+            {
+                $message = "Le nom d\'utilisateur ou le mot de passe est erronné.";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+        ?>
     </head>
     <body>
         <?php
@@ -20,7 +27,7 @@ if (session_status() == true) {
         <p class='infoLogin'> Veuillez vous identifier pour avoir <br>la possibilité d'acheter des formations</p><br><br>
         
         <div id='theForm'>
-            <form action="/action_page.php" method="post" enctype="multipart/form-data">
+            <form action="http://localhost/PHP/Controleur/clogin.php" method="post">
               <input type="text" name="courriel" id="courriel" placeholder="Courriel" size="45"> 
               <br><br>
               <input type="password" name="motdepasse" id="motdepasse" placeholder="Mot de passe" size="45">

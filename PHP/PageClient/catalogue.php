@@ -1,3 +1,7 @@
+<?php
+session_start();
+error_reporting(0);
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,7 +14,7 @@
         include ('../PageInject/EnteteClient.php');
         ?>
         
-        <p> Catalogue!!!!</p>
+        <p> <?php echo "Bonjour M." . $_SESSION["typeUtilisateur"] ?></p>
     </body>
 </html>
 

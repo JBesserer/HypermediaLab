@@ -1,16 +1,12 @@
 <?php
 /****************************************************************
-		Fichier : ControleurAjouterVehicule.php
+		Fichier : clogin.php
 		Auteur : Jérémy Besserer-Lemay
-		Fonctionnalité : Controleur de la vue Ajouter Vehicule
-			Date: 2017-04-11
-
-			Vérification:
-			2017-04-11      Jérémy Besserer-Lemay   Approuvé
-			======================================================
+		Fonctionnalité : Controleur de login
+			Date: 2017-08-23
 			
 			Dernière modification:
-			2017-04-12      Jérémy Besserer-Lemay   No Description
+			2017-08-23      Jérémy Besserer-Lemay   1 Creation
  ******************************************************************/
     // Start the session
     session_start();
@@ -21,9 +17,8 @@
     }
 ?>
 <?php
-	require_once '../LogiqueAffaires/gestionnaireConnexion.php';
-        require_once '../LogiqueAffaires/employe.php';
-	require_once '../LogiqueAffaires/type_employe.php';
+	require_once '../Gestionnaire/glogin.php';
+        require_once '../objet/utilisateur.php';
 	
 	class controleurConnexion{
 		private $infoUser;
@@ -31,37 +26,45 @@
 		function __construct() {
             $this->gestionnaireConn = new gestionnaireConnexion();
 			$this->infoUser = [];
-			$this->infoUser[0] = isset($_POST['utilisateur']) ? $_POST['utilisateur'] : null;
-			$this->infoUser[1] = isset($_POST['motpasse']) ? $_POST['motpasse'] : null;
+			$this->infoUser[0] = isset($_POST['courriel']) ? $_POST['courriel'] : null;
+			$this->infoUser[1] = isset($_POST['motdepasse']) ? $_POST['motdepasse'] : null;
 		}
 		//Entre les informations de la connection dans le gestionnaire de connection
 		function websiteConnection(){
 			return $this->gestionnaireConn->websiteConnection($this->infoUser);
 		}
+                
+                function echoInfos(){
+                    echo $this->infoUser[0];
+                    echo $this->infoUser[1];
+                }
 	}
 	
 	//Si la vueConnexion a bien ete submitter
 	
-	$utilisateurCourant = new employe();
+	$utilisateurCourant = new utilisateur();
 	$controlConn = new controleurConnexion();
 	$utilisateurCourant = $controlConn->websiteConnection();  
-            if($utilisateurCourant->getIdEmploye() != null)
+        
+            if($utilisateurCourant->getTypeUser() != null)
             {
-                    $typeEmployeCourant = new type_employe();
-                    $typeEmployeCourant = $utilisateurCourant->getTypeEmploye();
                     $_SESSION["loggedIn"]= true;
-                    $_SESSION["employeNom"] = $utilisateurCourant->getNomEmploye();
-                    $_SESSION["employePrenom"] = $utilisateurCourant->getPrenomEmploye();
-                    $_SESSION["typeEmploye"] = $typeEmployeCourant->getIdTypeEmploye();
-                    
-                    header("Location: http://localhost/Presentation/VueAccueil");
-                    exit;
+                    if($utilisateurCourant->getTypeUser() == 1){
+                        $_SESSION["typeUtilisateur"] = "Admin";
+                        header("Location: http://localhost/PHP/PageAdmin/service");
+                        exit;
+                    }
+                    else{
+                        $_SESSION["typeUtilisateur"] = "User";
+                        header("Location: http://localhost/PHP/PageClient/catalogue");
+                        exit;
+                    }
 
             }
-            else{
-                    header("Location: http://localhost/Presentation/VueConnexion?erreur=1");
-                  
-                    exit;
-            }
+//            else{
+//                    header("Location: http://localhost/PHP/PageCommune/login?erreur=1");
+//                  
+//                    exit;
+//            }
 ?>
 
