@@ -11,7 +11,6 @@
 			Historique de modifications:
 			2017-08-26      Jeremy Besserer-Lemay   1 Connexion et Client
  ******************************************************************/
-
 /**
  * Classe moteurBD qui effectue la connextion avec la base de donnée "labo"
  */
@@ -71,22 +70,23 @@ class moteurBD {
      * Retourne un client et ses infos
      * @param $idclient 
      */
-    function selectClient($idclient) {
+    function populateCatalogue() {
 
         $mysqli = $this->connection();
 
         //MySqli Select Query
-        $results = $mysqli->query("SELECT * FROM client WHERE id_client='" . $idclient . "'");
+        $results = $mysqli->query("SELECT * FROM service ORDER BY service_titre");
 
-        $allclient = array();
+        $allservice = array();
         while ($row = $results->fetch_assoc()) {
-            $allclient[] = array(
-                'id_client' => $row['id_client'],
-                'nom_client' => $row['nom_client'],
-                'prenom_client' => $row['prenom_client'],
-                'numero_telephone' => $row['numero_telephone'],
-                'courriel' => $row['courriel'],
-                'mot_passe' => $row['mot_passe']
+            $allservice[] = array(
+                'pk_service' => $row['pk_service'],
+                'service_titre' => $row['service_titre'],
+                'service_description' => $row['service_description'],
+                'duree' => $row['duree'],
+                'tarif' => $row['tarif'],
+                'actif' => $row['actif'],
+                'image' => $row['image']
             );
         }
         // Frees the memory associated with a result
@@ -94,7 +94,7 @@ class moteurBD {
 
         // close connection
         $mysqli->close();
-        return $allclient;
+        return $allservice;
     }
 
     /**

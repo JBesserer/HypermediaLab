@@ -46,6 +46,53 @@ header{
     border: 1px solid black;
 }
 
+#produitImage{
+    float: left;
+    width: 200px;
+    length:150px;
+}
+#produitCat{
+    border: 1px solid #FF9F07;
+    overflow: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#panierImg{
+    width: 25px;
+    length:25px;
+    float: right;
+    margin-right: 25px;
+    padding-bottom: 15px;
+}
+#titreProd{
+    
+}
+
+#tarif{
+    color:#09AAC1;
+    padding-right: 33%;
+}
+
+#duree{
+    color:#FF9F07;
+}
+
+#produitCat p{
+    margin-top:5px;
+    width: 800px;
+}
+
+#descProd{
+    margin-bottom: 10px;
+}
+
+#produitCat pre {   
+    display: inline;
+}
+
 .profile:active,.catalogue:active{
     color: #FF4A07;
 }
