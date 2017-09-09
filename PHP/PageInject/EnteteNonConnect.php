@@ -1,6 +1,6 @@
 <header>
     <div class="topbar-nav">
-        <a class="identify" href="../PageCommune/login.php">S'identifier</a><br>
-        <a href="login.php"><img src="../images/icones/logo.png"></a>
+        <a class="identify" href="../PageClient/profilInscrip.php">S'identifier</a><br>
+        <a href="../PageCommune/login.php"><img src="../images/icones/logo.png"></a>
     </div>
 </header>

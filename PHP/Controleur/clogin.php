@@ -64,7 +64,7 @@
             else{
                     header("Location: http://localhost/PHP/PageCommune/login?erreur=1");
                   
-                    exit;
+                   exit;
             }
 ?>
 

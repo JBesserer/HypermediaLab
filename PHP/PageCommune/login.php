@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-if (session_status() == true) {
+if ($_SESSION["loggedIn"] == true) {
     $_SESSION["loggedIn"] = false;
 }
 ?>

@@ -46,51 +46,14 @@ header{
     border: 1px solid black;
 }
 
-#produitImage{
-    float: left;
-    width: 200px;
-    length:150px;
-}
-#produitCat{
-    border: 1px solid #FF9F07;
-    overflow: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.chiffreErreur{
+    font-size: 300px;
+    font-weight: bold;
 }
 
-#panierImg{
-    width: 25px;
-    length:25px;
-    float: right;
-    margin-right: 25px;
-    padding-bottom: 15px;
-}
-#titreProd{
-    
-}
-
-#tarif{
-    color:#09AAC1;
-    padding-right: 33%;
-}
-
-#duree{
-    color:#FF9F07;
-}
-
-#produitCat p{
-    margin-top:5px;
-    width: 800px;
-}
-
-#descProd{
-    margin-bottom: 10px;
-}
-
-#produitCat pre {   
-    display: inline;
+.lettreErreur{
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .profile:active,.catalogue:active{
@@ -110,6 +73,25 @@ header{
     width: 180px;
     height: 57px;
     border: none;
+}
+
+.connexionRight{
+    background:url(../images/icones/bouton.png) no-repeat;
+    cursor:pointer;
+    color: #FFFAFB;
+    width: 180px;
+    height: 57px;
+    border: none;
+    float: right; 
+}
+
+label{
+    font-size: 12px;
+    color: #09AAc1;
+}
+
+.inputText{
+    color: #FF9F07;
 }
 
 #courriel, #motdepasse{
@@ -134,6 +116,23 @@ header{
    color:    #FF9F07;
 }
 
+.borderForm{
+    border:#FF9F07 1px solid;
+    padding:20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    
+}
+
+.mainTextForm{
+    font-size: 14px;
+}
+
+.oblTextForm{
+    font-size: 10px;
+    color: #FF4A07;
+}
+
 form {
     display: inline-block;
     text-align: left;
@@ -146,6 +145,11 @@ form {
 #facebook{
     width:200px;
     length: 50px;
+}
+
+.selectWidth{
+    width: 285px;
+    color: #FF9F07;
 }
 
 
