@@ -67,6 +67,37 @@ class moteurBD {
 	return $utilisateurCourant;
     }
     
+	/**
+     * Retourne un client et ses infos
+     * @param $idclient 
+     */
+    function populateCatalogue() {
+
+        $mysqli = $this->connection();
+
+        //MySqli Select Query
+        $results = $mysqli->query("SELECT * FROM service ORDER BY service_titre");
+
+        $allservice = array();
+        while ($row = $results->fetch_assoc()) {
+            $allservice[] = array(
+                'pk_service' => $row['pk_service'],
+                'service_titre' => $row['service_titre'],
+                'service_description' => $row['service_description'],
+                'duree' => $row['duree'],
+                'tarif' => $row['tarif'],
+                'actif' => $row['actif'],
+                'image' => $row['image']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $allservice;
+    }
+	
     /**
      * Retourne un client et ses infos
      * @param $idclient 

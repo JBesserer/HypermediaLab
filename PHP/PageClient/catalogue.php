@@ -12,9 +12,24 @@ error_reporting(0);
     <body>
         <?php
         include ('../PageInject/EnteteClient.php');
+	include ('../MoteurBD/moteurBD.php');
+        $moteur = new moteurBD();
+        $services = $moteur->populateCatalogue();
+        $max = sizeof($services);
         ?>
         
-        <p> <?php echo "Bonjour M." . $_SESSION["typeUtilisateur"] ?></p>
+        <?php
+        for($i = 0; $i < $max;$i++)
+        {
+        echo "
+        <div id='produitCat'>
+                <img id='produitImage' src=". $services[$i]['image'].">
+                <p id='titreProd'>" . htmlentities(utf8_encode($services[$i]['service_titre']),0,'UTF-8')."</p> <br>
+                <p id='descProd'>".htmlentities(utf8_encode($services[$i]['service_description']),0,'UTF-8')."</p><br>
+                <pre id='tarif'> Tarif : ".$services[$i]['tarif']."$</pre> <pre id='duree'> Duree: ".$services[$i]['duree']."h </pre><img id='panierImg' src='../images/icones/panier.png'>
+        </div> ";
+        }
+        ?>
     </body>
 </html>
 

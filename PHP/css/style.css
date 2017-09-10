@@ -152,6 +152,100 @@ form {
     color: #FF9F07;
 }
 
+#produitImage{
+    float: left;
+    width: 200px;
+    height:150px;
+}
+#produitCat{
+    border: 1px solid #FF9F07;
+    overflow: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#panierImg{
+    width: 25px;
+    length:25px;
+    float: right;
+    margin-right: 25px;
+    padding-bottom: 15px;
+}
+#titreProd{
+    margin-top: 5px;
+}
+
+#tarif{
+    color:#09AAC1;
+    padding-right: 33%;
+}
+
+#duree{
+    color:#FF9F07;
+}
+
+#descProd{
+    margin-bottom: 10px;
+    margin-top:5px;
+    width: 800px;
+}
+
+#produitCat pre {   
+    display: inline;
+}
+
+.borderPromoCourante{
+    border: yellowgreen solid 3px;
+    display:inline;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    margin-top: 30px;
+}
+
+.borderPromoNonCourante{
+    border: darkgray solid 3px;
+    display:inline;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    margin-top: 30px;
+    opacity: 0.6;
+    background: url("../images/promotions/strikeout.png")center center no-repeat;  
+}
 
 
+.promotion{
+    float:left;
+    font-size:22px;
+    font-weight: bold;
+    color: #FF9F07;
+    padding-right: 55px;
+    padding-left:15px;
+    padding-top: 30px;
+    padding-bottom: 55px;
+    text-decoration: none;
+}
 
+.borderPromoFutur{
+    border: darkgray solid 3px;
+    display:inline;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    margin-top: 30px;
+    opacity: 0.6;
+}
+
+.reseauxSociaux{
+    float:right;
+    width: 55px;
+    height: 55px;
+    padding-right: 5px;
+    padding-top: 30px;
+}
