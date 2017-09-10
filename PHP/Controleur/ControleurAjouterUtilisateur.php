@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+/****************************************************************
+		Fichier : ControleurAjouterUtilisateur.php
+		Auteur : Pierre-Marc Baril
+		Fonctionnalité : Controleur d'ajout d'utilisateur
+			Date: 2017-08-23
+			
+			Dernière modification:
+			2017-08-23      Pierre-Marc Baril   1 Creation
+ ******************************************************************/
 -->
 
 <?php

@@ -1,4 +1,15 @@
 <?php
+/****************************************************************
+		Fichier : catalogue.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : Gestionnaire du catalogue des produits
+			Date: 2017-08-26
+
+			Vérification:
+
+			Historique de modifications:
+			2017-08-26      Jeremy Besserer-Lemay   1 Création
+ ******************************************************************/
 session_start();
 error_reporting(0);
 ?>

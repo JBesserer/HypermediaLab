@@ -3,14 +3,14 @@
 		Fichier : connexion.php
 		Auteur : Jérémy Besserer-Lemay
 		Fonctionnalité : Prep Work pour la connexion au site web
-			Date: 2017-04-11
+			Date: 2017-08-26
 
 			Vérification:
-			2017-04-11      Jérémy Besserer-Lemay   Approuvé
+			2017-08-26      Jérémy Besserer-Lemay   Approuvé
 			======================================================
 			
 			Historique de modifications:
-			2017-04-11      Jérémy Besserer-Lemay   No Description
+			2017-08-26      Jérémy Besserer-Lemay   No Description
 *****************************************************************/
 	class connexion{
 		private $nomUtilisateur; //String

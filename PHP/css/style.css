@@ -1,3 +1,17 @@
+ /****************************************************************
+		Fichier : style.css
+		Auteur : Jérémy Besserer-Lemay
+		Fonctionnalité : Reset CSS, public domain download
+			Date: 2017-08-26
+
+			Vérification:
+			2017-08-26     Jérémy Besserer-Lemay   Approuvé
+			======================================================
+			
+			Historique des modifications:
+         *  ````````````2017-08-26      Jérémy Besserer-Lemay   1 Form Creation
+                        2017-09-01      Pierre-Marc Baril       2 Ajout CSS catalogue/service
+*****************************************************************/
 body{
     font-family: Century Gothic;
 }

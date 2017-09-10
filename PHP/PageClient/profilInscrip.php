@@ -1,4 +1,15 @@
 <?php
+/****************************************************************
+		Fichier : profilInscrip.php
+		Auteur : Pierre-Marc Baril
+		Fonctionnalité : Gestionnaire d'inscription et de profil
+			Date: 2017-08-26
+
+			Vérification:
+
+			Historique de modifications:
+			2017-08-26      Pierre-Marc Baril   1 Création
+ ******************************************************************/
 session_start();
 error_reporting(0);
 ?>

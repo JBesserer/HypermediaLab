@@ -1,4 +1,13 @@
 <?php
+/****************************************************************
+		Fichier : GestionnaireUtilisateur.php
+		Auteur : Pierre-Marc Baril
+		Fonctionnalité : Gestionnaire des utilisateurs
+			Date: 2017-08-23
+			
+			Dernière modification:
+			2017-08-23      Pierre-Marc Baril   1 Creation
+ ******************************************************************/
 require_once '../objet/utilisateur.php';
 require_once '../MoteurBD/moteurBD.php';
 

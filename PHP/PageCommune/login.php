@@ -1,4 +1,16 @@
 <?php
+/****************************************************************
+		Fichier : login.php
+		Auteur : Jérémy Besserer-Lemay
+		Fonctionnalité : Authentification pour le site web
+			Date: 2017-08-26
+
+			Vérification:
+
+			Historique de modifications:
+			2017-08-26      Jérémy Besserer-Lemay  1 Création
+ *                      2017-09-04      Pierre-Marc Baril      2 Session réparée
+ ******************************************************************/
 // Start the session
 session_start();
 if ($_SESSION["loggedIn"] == true) {
