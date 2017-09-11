@@ -44,7 +44,8 @@
 	
 	$utilisateurCourant = new utilisateur();
 	$controlConn = new controleurConnexion();
-	$utilisateurCourant = $controlConn->websiteConnection();  
+	$utilisateurCourant = $controlConn->websiteConnection();
+        
         
             if($utilisateurCourant->getTypeUser() != null)
             {

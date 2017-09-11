@@ -36,13 +36,13 @@ error_reporting(0);
 
                     <p class="mainTextForm">Remplissez ce formulaire pour créer votre profil</p>
                     <p class="oblTextForm">Tous les champs sont obligatoires</p>
-                    <input type="text" name="nomClient" id="nomClient" placeholder="Nom" size="45" class="inputText">
-                    <input type="text" name="prenomClient" id="prenomClient" placeholder="Prenom" size="45" class="inputText"> 
+                    <input type="text" name="nomClient" id="nomClient" placeholder="Nom" size="45" class="inputText" required>
+                    <input type="text" name="prenomClient" id="prenomClient" placeholder="Prenom" size="45" class="inputText" required> 
                     <br><br>
 
-                    <input type="text" name="numCivic" id="numcivic" placeholder="No civic" size="15" class="inputText">
-                    <input type="text" name="rue" id="rue" placeholder="Rue" size="26" class="inputText">
-                    <select id="ville" class="selectWidth" class="inputText">
+                    <input type="text" name="numCivic" id="numcivic" placeholder="No civic" size="15" class="inputText" required>
+                    <input type="text" name="rue" id="rue" placeholder="Rue" size="26" class="inputText" required>
+                    <select id="ville" class="selectWidth" class="inputText" required>
                       <option value="" disabled selected hidden>Ville</option>
                       <option value="troisrivieres">Trois-Rivières</option>
                       <option value="montreal">Montréal</option>
@@ -51,18 +51,18 @@ error_reporting(0);
                     </select> 
                     <br><br>
 
-                    <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" size="45" class="inputText">
-                    <input type="text" name="numTel" id="numTel" placeholder="Numéro de téléphone" size="45" pattern="[1-9]{1}[0-9]{9}" class="inputText">
+                    <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" size="45" class="inputText" pattern="([A-Za-z][0-9][A-Za-z][ -]?[0-9][A-Za-z][0-9])" required>
+                    <input type="text" name="numTel" id="numTel" placeholder="Numéro de téléphone" size="45" pattern="\d{3}[\-]\d{3}[\-]\d{4}" class="inputText" title="Le format doit être 555-555-5555." required>
                     <br><br>
                     
                     <p class="mainTextForm">Votre courriel servira à vous identifier lors de votre prochaine visite</p>
                     <p class="oblTextForm">Le mot de passe doit contenir 1 chiffre, 1 lettre et 8 caractères au minimum</p>
-                    <input type="text" name="courrielInsc" id="courrielInsc" placeholder="Courriel" size="45" class="inputText">
-                    <input type="text" name="confCourriel" id="confCourriel" placeholder="Confirmation du courriel" size="45" onblur="confirmEmail()" class="inputText"> 
+                    <input type="text" name="courrielInsc" id="courrielInsc" placeholder="Courriel" size="45" class="inputText" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Veuillez écrire un courriel valide." required>
+                    <input type="text" name="confCourriel" id="confCourriel" placeholder="Confirmation du courriel" size="45" onblur="confirmEmail()" class="inputText" required> 
                     <br><br>
                     
-                    <input type="password" name="password" id="password" placeholder="Mot de passe" size="45" class="inputText">
-                    <input type="password" name="confPassword" id="confPassword" placeholder="Confirmation du mot de passe" size="45" onblur="confirmPass()" class="inputText"> 
+                    <input type="password" name="password" id="password" placeholder="Mot de passe" size="45" class="inputText" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Le mot de passe doit contenir une majuscule, une minuscule et au moins 8 caractères." required>
+                    <input type="password" name="confPassword" id="confPassword" placeholder="Confirmation du mot de passe" size="45" onblur="confirmPass()" class="inputText" required> 
                     <br><br>
                     
                     <label><input type="checkbox" name="vehicle" value="true" id="checkboxInscrip"> Souhaitez-vous recevoir les promotions et les nouveautés</label>   
@@ -131,3 +131,4 @@ error_reporting(0);
        
     
 </script>
+
