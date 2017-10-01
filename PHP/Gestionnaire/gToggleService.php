@@ -5,4 +5,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+require_once '../MoteurBD/moteurBD.php';
 
+class gToggleService {
+    private $sql;
+    
+    function __construct() {
+        $this->sql = new moteurBD();
+    }
+   
+   function activateService($service)
+   {
+       return $this->sql->activateService($service);       
+   }  
+   
+   function deactivateService($service)
+   {
+       return $this->sql->deactivateService($service);       
+   }  
+}

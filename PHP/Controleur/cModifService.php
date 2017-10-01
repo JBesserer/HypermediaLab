@@ -47,5 +47,7 @@ if(isset($infoService[0])){
     $response = $gService->modifierService($infoService);
 }
 
+header("Location: ../PageAdmin/service.php");
+
 
 

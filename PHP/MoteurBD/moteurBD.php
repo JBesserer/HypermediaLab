@@ -78,6 +78,32 @@ class moteurBD {
         $mysqli = $this->connection();
         $mysqli->set_charset("utf8");
         //MySqli Select Query
+        $results = $mysqli->query("SELECT * FROM service WHERE actif = 1 ORDER BY service_titre");
+
+        $allservice = array();
+        while ($row = $results->fetch_assoc()) {
+            $allservice[] = array(
+                'pk_service' => $row['pk_service'],
+                'service_titre' => $row['service_titre'],
+                'service_description' => $row['service_description'],
+                'duree' => $row['duree'],
+                'tarif' => $row['tarif'],
+                'actif' => $row['actif'],
+                'image' => $row['image']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $allservice;
+    }
+    
+    function populateAdminCatalogue(){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        //MySqli Select Query
         $results = $mysqli->query("SELECT * FROM service ORDER BY service_titre");
 
         $allservice = array();
@@ -140,7 +166,7 @@ class moteurBD {
         $mysqli->set_charset("utf8");
 
         //MySqli Select Query
-        $results = $mysqli->query("SELECT promotion.pk_promotion, promotion.promotion_titre, promotion.rabais, service.pk_service, ta_promotion_service.date_debut, ta_promotion_service.date_fin FROM promotion JOIN ta_promotion_service ON promotion.pk_promotion = ta_promotion_service.fk_promotion JOIN service ON ta_promotion_service.fk_service = service.pk_service");
+        $results = $mysqli->query("SELECT promotion.pk_promotion, promotion.promotion_titre, promotion.rabais, service.pk_service, ta_promotion_service.date_debut, ta_promotion_service.date_fin, ta_promotion_service.pk_promotion_service FROM promotion JOIN ta_promotion_service ON promotion.pk_promotion = ta_promotion_service.fk_promotion JOIN service ON ta_promotion_service.fk_service = service.pk_service");
 
         $allrabais = array();
         while ($row = $results->fetch_assoc()) {
@@ -150,7 +176,8 @@ class moteurBD {
                 'rabais' => $row['rabais'],
                 'pk_service' => $row['pk_service'],
                 'date_debut' => $row['date_debut'],
-                'date_fin' => $row['date_fin']
+                'date_fin' => $row['date_fin'],
+                'pk_promotion_service' => $row['pk_promotion_service']
             );
         }
         // Frees the memory associated with a result
@@ -159,6 +186,28 @@ class moteurBD {
         // close connection
         $mysqli->close();
         return $allrabais;
+    }
+    
+    function getPromotions(){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        //MySqliSelectQuery
+        $results = $mysqli->query("SELECT * FROM promotion");
+        $allrabais = array();
+        while ($row = $results->fetch_assoc()) {
+            $allrabais[] = array(
+                'pk_promotion' => $row['pk_promotion'],
+                'promotion_titre' => $row['promotion_titre'],
+                'rabais' => $row['rabais']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $allrabais;    
     }
     
     function getService($idService)
@@ -231,6 +280,65 @@ class moteurBD {
         $mysqli->set_charset("utf8");
         //MySqli Select Query
         $mysqli->query("INSERT INTO service (service_titre, service_description, duree, tarif, actif) VALUES ('" . $service[1] . "', '" . $service[2] . "', '" . $service[3] . "', '" . $service[4] . "','" . $service[5] . "')"); 
+        
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
+    
+    function activateService($service_id){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        $mysqli->query("UPDATE service SET actif= 1 WHERE pk_service='" . $service_id . "'");
+        
+        // close connection
+        $mysqli->close();
+    }
+    
+    function deactivateService($service_id){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        $mysqli->query("UPDATE service SET actif= 0 WHERE pk_service='" . $service_id . "'");
+        
+        // close connection
+        $mysqli->close();
+    }
+    
+    function ajouterServicePromotion(array $servicePromotion){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        //MySqli Select Query
+        $mysqli->query("INSERT INTO ta_promotion_service (fk_promotion, fk_service, date_debut, date_fin, code) VALUES ('" . $servicePromotion[1] . "', '" . $servicePromotion[2] . "', '" . $servicePromotion[5] . "', '" . $servicePromotion[6] . "','" . $servicePromotion[7] . "')"); 
+        
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
+    
+    function modifierServicePromotion(array $servicePromotion){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        //MySqli Select Query
+        $mysqli->query("UPDATE ta_promotion_service SET fk_promotion='" . $servicePromotion[1] . "', fk_service='" . $servicePromotion[2] . "', date_debut='" . $servicePromotion[5] . "', date_fin='" . $servicePromotion[6] . "', code='" . $servicePromotion[7] . "' WHERE pk_promotion_service='" . $servicePromotion[0] . "'"); 
+        
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
+    
+    function supprimerServicePromotion($servicePromotion){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        //MySqli Select Query
+        $mysqli->query("DELETE FROM ta_promotion_service WHERE pk_promotion_service='" . $servicePromotion . "'"); 
         
         
         // close connection

@@ -351,6 +351,10 @@ form {
     display: none;
 }
 
+.divIDRabaisModal{
+    display: none;
+}
+
 #promotionIcon{
     background-color:antiquewhite;
     height: 47px; 
@@ -382,6 +386,7 @@ form {
 #promoNumberText{
     vertical-align: middle;
     margin-bottom: 4px;
+    color:#FF9F07;
 }
 
 #promotext{
@@ -402,4 +407,40 @@ form {
     font-size: 16px;
     color:#09AAC1;
     text-decoration:underline;
+}
+
+.noDeco{
+    text-decoration:none;
+    color:orange;
+    pointer-events : none;
+    cursor: default;
+}
+
+.noDeco:hover{
+    text-decoration:none;
+    color:orange;
+    pointer-events : none;
+    cursor: default;
+}
+
+.tooltip-inner {
+    max-width: 400px;
+    /* If max-width does not work, try using width instead */
+    width: 400px; 
+}
+
+.modPercentageText{
+    border: 1px solid black;
+    padding: 0px !important;
+    text-align: center;
+}
+
+.percentagePromotion{
+    font-size: 24px;
+    
+}
+
+.selectPromo{
+    background-color:#FF9F07 !important;
+    padding-top: 8px;
 }
