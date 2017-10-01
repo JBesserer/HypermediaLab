@@ -19,9 +19,6 @@
 <?php
 	require_once '../Gestionnaire/glogin.php';
         require_once '../objet/utilisateur.php';
-        require_once '../MoteurBD/moteurBD.php';
-        
-        $moteur = new moteurBD();
 	
 	class controleurConnexion{
 		private $infoUser;
@@ -40,10 +37,6 @@
                 function echoInfos(){
                     echo $this->infoUser[0];
                     echo $this->infoUser[1];
-                }
-                
-                function getCourriel(){
-                    return $this->infoUser[0];
                 }
 	}
 	
@@ -64,8 +57,6 @@
                     }
                     else{
                         $_SESSION["typeUtilisateur"] = "User";
-                        $_SESSION["Courriel"] = $controlConn->getCourriel();
-                        $_SESSION["idClient"] = $moteur->getIdClient($_SESSION["Courriel"]);
                         header("Location: http://localhost/PHP/PageClient/catalogue");
                         exit;
                     }

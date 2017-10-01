@@ -178,6 +178,18 @@ form {
     margin-right: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
+    position: relative;
+}
+
+#produitCatDesactiver{
+    border: 1px solid #FF9F07;
+    overflow: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    opacity: 0.6;
 }
 
 #panierImg{
@@ -194,45 +206,34 @@ form {
 #tarif{
     color:#09AAC1;
     padding-right: 33%;
+    display:inline;
 }
 
 #duree{
     color:#FF9F07;
+    margin-bottom: 2px;
 }
 
 #descProd{
     margin-bottom: 10px;
     margin-top:5px;
-    width: 800px;
 }
 
 #produitCat pre {   
     display: inline;
+    width: 800px;
 }
 
 .borderPromoCourante{
     border: yellowgreen solid 3px;
-    display:inline;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-    margin-top: 30px;
 }
 
 .borderPromoNonCourante{
     border: darkgray solid 3px;
-    display:inline;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-    margin-top: 30px;
     opacity: 0.6;
-    background: url("../images/promotions/strikeout.png")center center no-repeat;  
 }
 
-
+/*For the text Promotion to the left of promotions*/
 .promotion{
     float:left;
     font-size:22px;
@@ -247,19 +248,199 @@ form {
 
 .borderPromoFutur{
     border: darkgray solid 3px;
-    display:inline;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-    margin-top: 30px;
     opacity: 0.6;
 }
 
 .reseauxSociaux{
-    float:right;
     width: 55px;
-    height: 55px;
+}
+#numFacture{
+    display:inline;
+    width: 10%;
+    height: 110px;
+    float:left;
+    padding-left: 5px;
+    padding-top: 5px;
+    color: #FF4A07;
+    font-weight: bold;
+}
+
+#contenuFacture{
+    width: 80%;
+}
+
+#descFacture{
+    font-weight: bold;
+    color:#09AAC1;
+}
+
+#nomClient{
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 5px;
+}
+
+#dateFacture{
+    float: right;
+    color: #FF9F07;
+}
+
+#prixFacture{
+    float:right;
+}
+
+#detailFacture{
+    float:right;
+    color:black;
     padding-right: 5px;
-    padding-top: 30px;
+}
+
+.divItems{
+    width:70%;
+    padding-left: 30%;
+    display: none;      
+}
+
+
+#item{
+    font-weight: bold;
+    color:black;
+    font-size:12px;
+    padding-bottom : 5px;
+}
+
+#rabais{
+    font-weight: bold;
+    color:red;
+    font-size:12px;
+}
+
+.bottom-align-text {
+    position:relative;
+    height: 280px;
+    width: 150px;
+}
+.bottom-align-text img {
+    position:absolute;
+    bottom: 5px;
+    margin-left:45%;
+    float:right !important;
+}
+
+.dropdown{ 
+    text-align:right;    
+}
+
+.btnDropdown{
+    background:none;
+    border:none;
+    font-size:1em;
+    color:orange;
+}
+
+
+.btn-primary{
+    background-color: #FF9F07 !important;
+}
+
+.divIDCatalogue{
+    display: none;
+}
+
+.divIDRabais{
+    display: none;
+}
+
+.divIDRabaisModal{
+    display: none;
+}
+
+#promotionIcon{
+    background-color:antiquewhite;
+    height: 47px; 
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #FF9F07;
+    margin-right: 5px;
+    padding:0px;
+    
+}
+
+#promotionPlus{
+    
+    height: 47px; 
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #FF9F07 !important;
+    margin-right: 5px;
+    padding-top:18px;
+    
+}
+
+#promotionIcon .btnDropdown{
+    text-align:right;
+}
+
+#promoNumberText{
+    vertical-align: middle;
+    margin-bottom: 4px;
+    color:#FF9F07;
+}
+
+#promotext{
+    font-size: 8px;
+    background-color:#FF9F07;
+    color: #FFFAFB;
+    margin-bottom: 0px;
+}
+
+#promotext p{
+    margin-bottom: 0px;
+    
+}
+
+.ajoutService{
+    text-align: right;   
+    font-weight:bold;
+    font-size: 16px;
+    color:#09AAC1;
+    text-decoration:underline;
+}
+
+.noDeco{
+    text-decoration:none;
+    color:orange;
+    pointer-events : none;
+    cursor: default;
+}
+
+.noDeco:hover{
+    text-decoration:none;
+    color:orange;
+    pointer-events : none;
+    cursor: default;
+}
+
+.tooltip-inner {
+    max-width: 400px;
+    /* If max-width does not work, try using width instead */
+    width: 400px; 
+}
+
+.modPercentageText{
+    border: 1px solid black;
+    padding: 0px !important;
+    text-align: center;
+}
+
+.percentagePromotion{
+    font-size: 24px;
+    
+}
+
+.selectPromo{
+    background-color:#FF9F07 !important;
+    padding-top: 8px;
 }

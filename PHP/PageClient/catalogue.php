@@ -35,8 +35,8 @@ error_reporting(0);
         echo "
         <div id='produitCat'>
                 <img id='produitImage' src=". $services[$i]['image'].">
-                <p id='titreProd'>" . htmlentities(utf8_encode($services[$i]['service_titre']),0,'UTF-8')."</p> <br>
-                <p id='descProd'>".htmlentities(utf8_encode($services[$i]['service_description']),0,'UTF-8')."</p><br>
+                <p id='titreProd'>" . $services[$i]['service_titre']."</p> <br>
+                <p id='descProd'>".$services[$i]['service_description']."</p><br>
                 <pre id='tarif'> Tarif : ".$services[$i]['tarif']."$</pre> <pre id='duree'> Duree: ".$services[$i]['duree']."h </pre><img id='panierImg' src='../images/icones/panier.png'>
         </div> ";
         }

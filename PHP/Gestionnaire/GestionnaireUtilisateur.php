@@ -8,6 +8,7 @@
 			Dernière modification:
 			2017-08-23      Pierre-Marc Baril   1 Creation
  ******************************************************************/
+require_once '../objet/utilisateur.php';
 require_once '../MoteurBD/moteurBD.php';
 
 class GestionnaireUtilisateur {
@@ -19,13 +20,15 @@ class GestionnaireUtilisateur {
         
    function ajouterUtilisateur(array $client)
    {
-       return $this->sql->insertUtilisateur($client);
+       $this->sql->insertUtilisateur($client);
+       $retour = $this->sql->selectUtilisateur($client[0]);
+       return $retour;
    }
    
-   function modificationUtilisateur(array $client)
+   function modifierUtilisateur(array $client)
    {
-       return $this->sql->updateClient($client);
-   }
+       $this->sql->updateUtilisateur($client);       
+   }  
    
    function supprimerUtilisateur(array $client)
    {
