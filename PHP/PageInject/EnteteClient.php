@@ -10,6 +10,7 @@
 			Historique de modifications:
 			2017-08-26      Jeremy Besserer-Lemay   1 Création
  ******************************************************************/
+session_start();
 ?>
 <header>
     <div class="topbar-nav">
@@ -21,4 +22,5 @@
         <a class='catalogue' href='catalogue.php'>Catalogue</a> 
     </div>
 </header>
+
 

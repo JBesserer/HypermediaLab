@@ -6,6 +6,24 @@
             <file>file:/C:/wamp64/www/PHP/Controleur/cServicePromotion.php</file>
             <file>file:/C:/wamp64/www/PHP/Gestionnaire/gServicePromotion.php</file>
             <file>file:/C:/wamp64/www/PHP/PageAdmin/service.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageAdmin/facture.php</file>
+            <file>file:/C:/wamp64/www/PHP/css/reset.css</file>
+            <file>file:/C:/wamp64/www/PHP/PageInject/EnteteAdmin.php</file>
+            <file>file:/C:/wamp64/www/PHP/css/style.css</file>
+            <file>file:/C:/wamp64/www/PHP/PageClient/confirmation.php</file>
+            <file>file:/C:/wamp64/www/PHP/objet/utilisateur.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageInject/EnteteNonConnect.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageInject/EnteteClient.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageClient/catalogue.php</file>
+            <file>file:/C:/wamp64/www/PHP/objet/connexion.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageClient/annulation.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageClient/panier.php</file>
+            <file>file:/C:/wamp64/www/PHP/Controleur/ControleurAjouterUtilisateur.php</file>
+            <file>file:/C:/wamp64/www/PHP/Gestionnaire/GestionnaireUtilisateur.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageCommune/login.php</file>
+            <file>file:/C:/wamp64/www/PHP/Controleur/clogin.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageClient/profilInscrip.php</file>
+            <file>file:/C:/wamp64/www/PHP/PageCommune/erreur404.php</file>
             <file>file:/C:/wamp64/www/PHP/MoteurBD/moteurBD.php</file>
             <file>file:/C:/wamp64/www/PHP/Controleur/cToggleService.php</file>
         </group>
