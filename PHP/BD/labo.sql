@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2017 at 11:18 AM
+-- Generation Time: Oct 01, 2017 at 08:41 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -31,7 +31,7 @@ CREATE TABLE `adresse` (
   `no_civique` varchar(10) DEFAULT NULL,
   `rue` varchar(75) DEFAULT NULL,
   `fk_ville` int(11) DEFAULT NULL,
-  `code_postal` varchar(6) DEFAULT NULL
+  `code_postal` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`pk_client`, `fk_utilisateur`, `prenom`, `nom`, `fk_adresse`, `telephone`, `infolettre`) VALUES
-(1, 4, 'Didier', 'Desrosiers', 1, '819-565-1425', 0),
+(1, 4, 'Didiera', 'Desrosiersa', 1, '819-565-1425', 1),
 (2, 5, 'Marc', 'Beaudoin', 1, '819-475-2142', 1),
 (3, 6, 'Carlos', 'Gendron', 2, '819-658-6325', 1),
 (4, 7, 'Geneviève', 'Pommerleau', 3, '819-145-5865', 0),
@@ -134,7 +134,7 @@ INSERT INTO `client` (`pk_client`, `fk_utilisateur`, `prenom`, `nom`, `fk_adress
 CREATE TABLE `facture` (
   `pk_facture` int(11) NOT NULL,
   `fk_client` int(11) DEFAULT NULL,
-  `date_service` datetime DEFAULT NULL,
+  `date_service` date DEFAULT NULL,
   `paiement_status` tinyint(1) DEFAULT NULL,
   `no_confirmation` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -144,22 +144,22 @@ CREATE TABLE `facture` (
 --
 
 INSERT INTO `facture` (`pk_facture`, `fk_client`, `date_service`, `paiement_status`, `no_confirmation`) VALUES
-(1, 2, '2016-08-03 00:00:00', 1, 'hfg5165fgh6152g'),
-(2, 3, '2016-08-17 00:00:00', 1, 'g1mu65ykfh65li'),
-(3, 2, '2016-08-15 00:00:00', 1, 'fgh1liu651hg2j16u'),
-(4, 6, '2016-08-17 00:00:00', 1, '1j66k8t84jk4li654fb'),
-(5, 8, '2016-08-30 00:00:00', 1, 'dndg65m1gd5m16dg5hm'),
-(6, 10, '2016-08-31 00:00:00', 1, 'tyui5h416dg84md61m'),
-(7, 8, '2016-09-20 00:00:00', 1, 'd1651n6s5fghn651'),
-(8, 10, '2016-09-21 00:00:00', 1, 'dghn41dg65m1ui6'),
-(9, 11, '2016-10-25 00:00:00', 1, '2hjm16f5h1jm1h6j5m'),
-(10, 12, '2016-10-26 00:00:00', 1, '651nvbn6516ynm'),
-(11, 12, '2016-11-22 00:00:00', 1, 'f561n6fdg51n65f1gnh'),
-(12, 13, '2016-11-29 00:00:00', 1, '1n65gdhn6gd1hnr'),
-(13, 14, '2016-08-31 00:00:00', 1, 'vdf1651nsfghn651um'),
-(14, 18, '2016-09-14 00:00:00', 1, '1mu618g6mdgh2bb'),
-(15, 23, '2016-12-28 00:00:00', 1, '5ng6d5h1n65gd1hn65'),
-(16, 25, '2016-12-25 00:00:00', 1, 'b4d6b1dfhg1n6f8541n6fr');
+(1, 2, '2016-08-03', 1, 'hfg5165fgh6152g'),
+(2, 3, '2016-08-17', 1, 'g1mu65ykfh65li'),
+(3, 2, '2016-08-15', 1, 'fgh1liu651hg2j16u'),
+(4, 6, '2016-08-17', 1, '1j66k8t84jk4li654fb'),
+(5, 8, '2016-08-30', 1, 'dndg65m1gd5m16dg5hm'),
+(6, 10, '2016-08-31', 1, 'tyui5h416dg84md61m'),
+(7, 8, '2016-09-20', 1, 'd1651n6s5fghn651'),
+(8, 10, '2016-09-21', 1, 'dghn41dg65m1ui6'),
+(9, 11, '2016-10-25', 1, '2hjm16f5h1jm1h6j5m'),
+(10, 12, '2016-10-26', 1, '651nvbn6516ynm'),
+(11, 12, '2016-11-22', 1, 'f561n6fdg51n65f1gnh'),
+(12, 13, '2016-11-29', 1, '1n65gdhn6gd1hnr'),
+(13, 14, '2016-08-31', 1, 'vdf1651nsfghn651um'),
+(14, 18, '2016-09-14', 1, '1mu618g6mdgh2bb'),
+(15, 23, '2016-12-28', 1, '5ng6d5h1n65gd1hn65'),
+(16, 25, '2016-12-25', 1, 'b4d6b1dfhg1n6f8541n6fr');
 
 -- --------------------------------------------------------
 
@@ -182,7 +182,8 @@ INSERT INTO `promotion` (`pk_promotion`, `promotion_titre`, `rabais`) VALUES
 (2, 'Rabais fidélité', '0.25'),
 (3, 'Rabais du printemps', '0.10'),
 (4, 'Rabais de Noël', '0.20'),
-(5, 'Besoin d\'une mise à niveau', '0.25');
+(6, 'Rabais de bienvenue', '0.28'),
+(8, 'Rabais de beauté', '0.17');
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,7 @@ INSERT INTO `promotion` (`pk_promotion`, `promotion_titre`, `rabais`) VALUES
 CREATE TABLE `service` (
   `pk_service` int(11) NOT NULL,
   `service_titre` varchar(75) DEFAULT NULL,
-  `service_description` longtext,
+  `service_description` longtext CHARACTER SET utf8mb4,
   `duree` int(11) DEFAULT NULL,
   `tarif` decimal(6,2) DEFAULT NULL,
   `actif` tinyint(1) DEFAULT NULL,
@@ -205,7 +206,7 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`pk_service`, `service_titre`, `service_description`, `duree`, `tarif`, `actif`, `image`) VALUES
-(1, 'Access 2016', 'Apprenez à créer des bases de données simple et à créer des applications personnalisées pour vous aider à gérer votre entreprise.', 16, '320.00', 1, '../images/services/CoursAccess.png'),
+(1, 'Access 2016', 'Apprenez à  créer des bases de données simple et à  créer des applications personnalisées pour vous aider à gérer votre entreprise.', 16, '335.00', 0, '../images/services/CoursAccess.png'),
 (2, 'Excel débutant', 'Ce cours a pour objectif de vous initier au chiffrier Excel, pour vous permettre de créer des classeurs et de les mettre en forme professionnellement.', 25, '200.00', 1, '../images/services/CoursExcel.png'),
 (3, 'Initiation à la photographie numérique', 'Étudiez les concepts de base en photographie tel que les différentes prises de vue, le cadrage et l\'éclairage. Apprenez à utiliser les différents modes de votre appareil photo numérique et commencez à faire de la retouche photo avec Photoshop. La formation comprend des exercices en studio et à l’extérieur. ', 14, '280.00', 1, '../images/services/Photo.png'),
 (4, 'Matériel informatique', 'Étudiez les composantes d’un ordinateur PC compatible. Effectuez le montage et la configuration d’un ordinateur. Apprenez à établir un diagnostic et à réparer un ordinateur. La formation comprend des laboratoires pratiques.', 16, '320.00', 1, '../images/services/hardware-cours.png'),
@@ -279,8 +280,19 @@ CREATE TABLE `ta_promotion_service` (
 
 INSERT INTO `ta_promotion_service` (`pk_promotion_service`, `fk_promotion`, `fk_service`, `date_debut`, `date_fin`, `code`) VALUES
 (1, 1, 7, '2016-08-01 00:00:00', '2016-09-30 00:00:00', 'rentree2016'),
-(2, 2, 4, '2016-11-15 00:00:00', '2016-12-31 00:00:00', 'noel2016'),
-(3, 5, 9, '2016-11-01 00:00:00', '2016-11-30 00:00:00', 'o365');
+(2, 2, 4, '2017-09-21 00:00:00', '2017-10-02 00:00:00', ''),
+(19, 8, 1, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(20, 8, 2, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(21, 8, 3, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(22, 8, 4, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(23, 8, 5, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(24, 8, 6, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(25, 8, 7, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(26, 8, 8, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(27, 8, 9, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(28, 8, 10, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(29, 8, 11, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
+(30, 8, 12, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412');
 
 -- --------------------------------------------------------
 
@@ -448,12 +460,12 @@ ALTER TABLE `facture`
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `pk_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pk_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `pk_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `pk_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `ta_facture_service`
 --
@@ -463,7 +475,7 @@ ALTER TABLE `ta_facture_service`
 -- AUTO_INCREMENT for table `ta_promotion_service`
 --
 ALTER TABLE `ta_promotion_service`
-  MODIFY `pk_promotion_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pk_promotion_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `utilisateur`
 --
