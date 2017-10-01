@@ -13,8 +13,10 @@
  ******************************************************************/
 // Start the session
 session_start();
-if ($_SESSION["loggedIn"] == true) {
+if (session_status() == true) {
     $_SESSION["loggedIn"] = false;
+    session_unset();
+    session_destroy();
 }
 ?>
 <html>
