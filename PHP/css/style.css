@@ -29,7 +29,7 @@ header{
     padding-right: 15px;
 }
 
-.profile,.catalogue, .facture, .service{
+.profile,.catalogue, .facture, .service, .promotionWindow{
     float:right;
     font-size:14px;
     font-weight: bold;
@@ -171,7 +171,7 @@ form {
     width: 200px;
     height:150px;
 }
-#produitCat{
+#produitCat, #promotionCat{
     border: 1px solid #FF9F07;
     overflow: auto;
     margin-left: 10px;
@@ -179,6 +179,23 @@ form {
     margin-top: 5px;
     margin-bottom: 5px;
     position: relative;
+}
+
+#promotionCat{
+    height:50px;
+    overflow:visible;
+}
+
+.marginPromoTitre{
+    margin-top: 10px;
+}
+
+.marginPromoPercent{
+    margin-top: 10px;
+}
+
+.confirmPositioning{
+    text-align: right;
 }
 
 #produitCatDesactiver{
@@ -448,4 +465,8 @@ form {
 .selectPromo{
     background-color:#FF9F07 !important;
     padding-top: 8px;
+}
+
+.glyphicon{
+    color:#09AAC1;
 }

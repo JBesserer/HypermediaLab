@@ -52,7 +52,7 @@ error_reporting(0);
             <div class='col-sm-9 col-md-9 col-lg-9'>
                 <label><input type='checkbox' name='actif' id='actif'checked>Activer le service dans le catalogue</label>
             </div>
-            <div class='col-sm-12 col-md-12 col-lg-12'>
+            <div class='col-sm-12 col-md-12 col-lg-12 confirmPositioning'>
                 <input type='submit' id='confirmer' class='confirmer' value='Confirmer' required>
             </div>
         </div>

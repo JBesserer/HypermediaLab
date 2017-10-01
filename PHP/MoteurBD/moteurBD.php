@@ -193,7 +193,7 @@ class moteurBD {
         $mysqli->set_charset("utf8");
         
         //MySqliSelectQuery
-        $results = $mysqli->query("SELECT * FROM promotion");
+        $results = $mysqli->query("SELECT * FROM promotion ORDER BY promotion_titre");
         $allrabais = array();
         while ($row = $results->fetch_assoc()) {
             $allrabais[] = array(
@@ -208,6 +208,33 @@ class moteurBD {
         // close connection
         $mysqli->close();
         return $allrabais;    
+    }
+    
+    function getServices(){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+
+        //MySqli Select Query
+        $results = $mysqli->query("SELECT * FROM `service`");
+
+        $service = array();
+        while ($row = $results->fetch_assoc()) {
+            $service[] = array(
+                'pk_service' => $row['pk_service'],
+                'service_titre' => $row['service_titre'],
+                'service_description' => $row['service_description'],
+                'duree' => $row['duree'],
+                'tarif' => $row['tarif'],
+                'actif' => $row['actif'],
+                'image' => $row['image']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $service;
     }
     
     function getService($idService)
@@ -347,6 +374,57 @@ class moteurBD {
         return 1;
     }
     
+    
+    function updatePromotion(array $services){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        $size = sizeof($services);
+        
+        for($i=0;$i<$size;$i++){
+            if($services[$i][0]==null){
+                $mysqli->query("INSERT INTO promotion (promotion_titre, rabais) VALUES ('" . $services[$i][1] . "', '" . $services[$i][2] . "')");
+            }else{
+                $mysqli->query("UPDATE promotion SET promotion_titre='" . $services[$i][1] . "', rabais='" . $services[$i][2] . "' WHERE pk_promotion='" . $services[$i][0] . "'");
+            }
+        }
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
+    
+    function addToAllServices(array $promotionAllService){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        $services = $this->getServices();
+        $size = sizeof($services);
+        
+        for($i=0;$i<$size;$i++){
+            $mysqli->query("INSERT INTO ta_promotion_service (fk_promotion, fk_service,date_debut,date_fin,code) VALUES ('" . $promotionAllService[0] . "', '" . $services[$i]['pk_service'] . "', '" . $promotionAllService[1] ."', '" . $promotionAllService[2] ."', '" . $promotionAllService[3] ."')");
+        }
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
+    
+    function deletePromotion($promoID){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        //MySqli Select Query
+        $mysqli->query("DELETE FROM ta_promotion_service WHERE fk_promotion='" . $promoID . "'"); 
+        $mysqli->query("DELETE FROM promotion WHERE pk_promotion='" . $promoID . "'"); 
+        
+        
+        // close connection
+        $mysqli->close();
+        
+        return 1;
+    }
 	
     /**
      * Retourne un client et ses infos

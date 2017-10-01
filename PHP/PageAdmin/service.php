@@ -80,7 +80,7 @@ error_reporting(0);
                         }
                         else if($paymentDate->getTimestamp() < $contractDateBegin->getTimestamp()){
                             echo "
-                            <div id='promotionIcon class='borderPromoFutur col-sm-1 col-md-1 col-lg-1'>";
+                            <div id='promotionIcon' class='borderPromoFutur col-sm-1 col-md-1 col-lg-1'>";
                         }
                         else if($paymentDate->getTimestamp() > $contractDateEnd->getTimestamp()){
                             echo "
@@ -122,7 +122,7 @@ error_reporting(0);
                                     <p>Le code n'est pas obligatoire et ne sera pas exigé si le champ est vide</p>
                                     <form action='../Controleur/cServicePromotion.php' method='post' enctype='multipart/form-data'> 
                                     <div id='produitCat'>
-                                        <div class=''> 
+                                        <div class='divIDRabaisModal'> 
                                             <input type='text' name='idServiceModal' id='idServiceModal' placeholder='idServiceModal'>
                                             <input type='text' name='idRabaisModal' id='idRabaisModal' placeholder='idRabaisModal'>
                                             <input type='text' name='idPromoServiceModal' id='idPromoServiceModal' placeholder='idPromoServiceModal'>
@@ -265,7 +265,14 @@ error_reporting(0);
             
             $(".supprimerRabais").click(function(){
                 var pkPromoService = $(this).parents('div').find('.divIDRabais').find('.idPromoService').text();
-                $(location).attr('href',"../Controleur/cServicePromotion.php?id="+pkPromoService+"&eventid=1");
+                
+                if(confirm("Voulez-vous vraiment supprimer cette promotion liée a ce service?")){
+                    $(location).attr('href',"../Controleur/cServicePromotion.php?id="+pkPromoService+"&eventid=1");
+                }
+                else{
+                    return false;
+                }
+                
             }); 
             
             $("form").submit(function(e){
@@ -309,9 +316,7 @@ error_reporting(0);
                     }
                 }
              })
-            $('[data-toggle="tooltip"]').tooltip(); 
-            
-            
+            $('[data-toggle="tooltip"]').tooltip();    
         });
         </script>
     </body>
