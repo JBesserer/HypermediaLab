@@ -352,23 +352,26 @@ class moteurBD {
      * Retourne un client et ses infos
      * @param $idclient 
      */
-    function selectClient($idclient) {
+    function selectClient($idClient) {
 
         $mysqli = $this->connection();
         $mysqli->set_charset("utf8");
 
         //MySqli Select Query
-        $results = $mysqli->query("SELECT * FROM client WHERE id_client='" . $idclient . "'");
-
-        $allclient = array();
+        $results = $mysqli->query("SELECT a.prenom, a.nom, a.telephone, a.infolettre, b.no_civique, b.rue, b.code_postal, c.ville, d.courriel, d.mot_de_passe FROM client a INNER JOIN adresse b ON a.fk_adresse = b.pk_adresse INNER JOIN ville c ON b.fk_ville=c.pk_ville INNER JOIN utilisateur d ON d.pk_utilisateur= a.fk_utilisateur WHERE a.pk_client='" . $idClient . "'");
+        $numClient = array();
         while ($row = $results->fetch_assoc()) {
-            $allclient[] = array(
-                'id_client' => $row['id_client'],
-                'nom_client' => $row['nom_client'],
-                'prenom_client' => $row['prenom_client'],
-                'numero_telephone' => $row['numero_telephone'],
+            $numClient[] = array(
+                'prenom_client' => $row['prenom'],
+                'nom_client' => $row['nom'],
+                'numero_telephone' => $row['telephone'],
+                'infolettre' => $row['infolettre'],
+                'no_civique' => $row['no_civique'],
+                'rue' => $row['rue'],
+                'code_postal' => $row['code_postal'],
+                'ville' => $row['ville'],
                 'courriel' => $row['courriel'],
-                'mot_passe' => $row['mot_passe']
+                'mot_de_passe' => $row['mot_de_passe']
             );
         }
         // Frees the memory associated with a result
@@ -376,32 +379,92 @@ class moteurBD {
 
         // close connection
         $mysqli->close();
-        return $allclient;
+        return $numClient;
+    }
+
+    function selectUtilisateur($courrielClient) {
+
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+
+        //MySqli Select Query
+        $results = $mysqli->query("SELECT * FROM utilisateur WHERE courriel= '" . $courrielClient . "'");
+        $mysqli->close();
+         if($results->num_rows === 0)
+        {
+            return false;
+        }
+        else return true;
+      
+    }
+    
+    function getIdClient($courrielClient){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+
+        //MySqli Select Query
+        $results = $mysqli->query("SELECT a.pk_client FROM client a INNER JOIN utilisateur b ON a.fk_utilisateur=b.pk_utilisateur WHERE b.courriel= '".$courrielClient."'");
+        $idClient = array();
+        while ($row = $results->fetch_assoc()) {
+            $idClient[] = array(
+                'id_client' => $row['pk_client']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $idClient;
     }
 
     /**
      * Insere un nouveau client dans la BD
      * @param array $clientpour les infos clients à entrer
      */
-    function insertClient(array $client) {
+    function insertUtilisateur(array $client) {
         $erreur = 0;
         $mysqli = $this->connection();
         $mysqli->set_charset("utf8");
+        $idVille;
 
-        $clientSelect = $this->selectClient($client[0]);
-        if($clientSelect[0] !== null){
+        $clientSelect = $this->selectUtilisateur($client[7]);
+        
+        if($clientSelect === true){
             $erreur = 1;
             return $erreur;
         }
         else
         {
-            //MySqli Select Query
-            $mysqli->query("INSERT INTO client (id_client, nom_client, prenom_client, numero_telephone, courriel, mot_passe) VALUES ('" . $client[0] . "', '" . $client[1] . "', '" . $client[2] . "', '" . $client[3] . "','" . $client[4] . "','" . $client[5] . "')"); 
-        }
+     
+            $mysqli->autocommit(TRUE);
+            $res= $mysqli->query("SELECT pk_ville FROM ville WHERE ville = '" . $client[4] . "';"   );
+            //echo "ID ville".$idVille;
+            if (mysqli_num_rows($res) > 0) {
+            while($row = mysqli_fetch_assoc($res)) {
+               $idVille = $row["pk_ville"];
+            }
+         }
+            echo "numero ville".$idVille;
+            $res1=$mysqli->query("INSERT INTO adresse (no_civique, rue, fk_ville, code_postal) VALUES ('" . $client[2] . "','" . $client[3] . "','" .$idVille."','". $client[5]."')");
+            $idAdresse=$mysqli->insert_id;
+            echo "adresse:".$idAdresse;
+            $res2=$mysqli->query("INSERT INTO utilisateur (courriel, mot_de_passe, administrateur) VALUES ('" . $client[7] . "','" . $client[8] . "', 0);");
+            $idUtilisateur=$mysqli->insert_id;
+            $res3=$mysqli->query("INSERT INTO client (fk_utilisateur, prenom, nom, fk_adresse, telephone, infolettre) VALUES ('".$idUtilisateur."' ,'" . $client[0] . "', '" . $client[1] . "','" . $idAdresse ."','" . $client[6] . "', '" . $client[9] . "')"); 
         
+        }
         // close connection
         $mysqli->close();
-        
+        if($idVille===false){
+            $erreur=1;
+        }else if($res1===false){
+            $erreur=2;
+        }else if($res2===false){
+            $erreur=3;
+        }else if($res3===false){
+            $erreur=4;
+        }
         return $erreur;
     }
     
@@ -411,12 +474,51 @@ class moteurBD {
      */
     function updateClient(array $client) {
 
+        $erreur=0;
         $mysqli = $this->connection();
         $mysqli->set_charset("utf8");
+        $idAdresse;
+        $idUtilisateur;
+        $idVille;
         
-        $mysqli->query("UPDATE client SET nom_client='" . $client[1] . "', prenom_client='" . $client[2] . "', numero_telephone='" . $client[3] . "', courriel='" . $client[4] . "', mot_passe='" . $client[5] . "' WHERE id_client='" . $client[0] . "'");
+        $resultId = $this->getIdClient($_SESSION["Courriel"]);
+        $idClient = $resultId[0]["id_client"];
+        
+        $res= $mysqli->query("SELECT pk_ville FROM ville WHERE ville = '" . $client[4] . "';"   );
+            //echo "ID ville".$idVille;
+            if (mysqli_num_rows($res) > 0) {
+            while($row = mysqli_fetch_assoc($res)) {
+               $idVille = $row["pk_ville"];
+            }
+         }
+        
+        $result=$mysqli->query("UPDATE client SET prenom='" . $client[0] . "', nom='" . $client[1] . "', telephone='" . $client[6] . "', infolettre='" . $client[9] . "' WHERE pk_client='" . $idClient . "'");
+        
+        $res= $mysqli->query("SELECT fk_adresse FROM client WHERE pk_client='" . $idClient . "'");
+            if (mysqli_num_rows($res) > 0) {
+            while($row = mysqli_fetch_assoc($res)) {
+               $idAdresse = $row["fk_adresse"];
+            }
+         }
+         $res= $mysqli->query("SELECT fk_utilisateur FROM client WHERE pk_client='" . $idClient . "'");
+            if (mysqli_num_rows($res) > 0) {
+            while($row = mysqli_fetch_assoc($res)) {
+               $idUtilisateur = $row["fk_utilisateur"];
+            }
+         }
+        
+        $result=$mysqli->query("UPDATE utilisateur SET courriel='" . $client[7] . "', mot_de_passe='" . $client[8] . "' WHERE pk_utilisateur='" . $idUtilisateur . "'");
+        $result=$mysqli->query("UPDATE adresse SET no_civique='" . $client[2] . "', rue='" . $client[3] . "', code_postal='" . $client[5] . "', fk_ville='" . $idVille . "' WHERE pk_adresse='" . $idAdresse . "'");
+        $result=$mysqli->query("UPDATE ville SET ville='" . $client[4] . "' WHERE pk_ville='" . $idVille . "'");
+         
+
+        if($result===false){
+            $erreur=5;
+        }
         
         // close connection
         $mysqli->close();
+        
+        return $erreur;
     }
 }//fin de la classe moteurBD
