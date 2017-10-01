@@ -1,4 +1,13 @@
 <?php
+/****************************************************************
+		Fichier : cModifService.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : Controleur Modif service
+			Date: 2017-09-25
+			
+			Dernière modification:
+			2017-09-25      Jeremy-Besserer-Lemay   1 Creation
+ ******************************************************************/
 require_once '../Gestionnaire/gModifService.php';
 
 $infoService = [];  

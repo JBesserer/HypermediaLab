@@ -1,4 +1,13 @@
 <?php
+/****************************************************************
+		Fichier : cPromotion.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : Controleur de la fenetre Promotion
+			Date: 2017-10-01
+			
+			Dernière modification:
+			2017-10-01      Jeremy-Besserer-Lemay   1 Creation
+ ******************************************************************/
 require_once '../Gestionnaire/gPromotion.php';
 $gPromo = new gPromotion();
 

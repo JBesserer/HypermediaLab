@@ -1,10 +1,13 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/****************************************************************
+		Fichier : gAjoutService.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : gestionnaire d'ajout de service
+			Date: 2017-09-30
+			
+			Dernière modification:
+			2017-09-30     Jeremy-Besserer-Lemay   1 Creation
+ ******************************************************************/
 
 /**
  * Description of gModifService

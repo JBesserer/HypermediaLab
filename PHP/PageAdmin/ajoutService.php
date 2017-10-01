@@ -1,6 +1,6 @@
 <?php
 /****************************************************************
-		Fichier : service.php
+		Fichier : ajoutService.php
 		Auteur : Jeremy Besserer-Lemay
 		Fonctionnalité : Gestionnaire des services et promotions
 			Date: 2017-08-26
@@ -9,6 +9,7 @@
 
 			Historique de modifications:
 			2017-08-26      Jeremy Besserer-Lemay   1 Création
+ *                      NUMEROUS UPDATES SINCE THEN
  ******************************************************************/
 session_start();
 error_reporting(0);

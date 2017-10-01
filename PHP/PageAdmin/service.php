@@ -155,7 +155,7 @@ error_reporting(0);
                                         </div>
                                         <div class='col-sm-3 col-md-3 col-lg-3'>
                                         </div>
-                                        <div class='col-sm-12 col-md-12 col-lg-12'>
+                                        <div class='col-sm-12 col-md-12 col-lg-12 confirmPositioning'>
                                             <input type='submit' id='confirmer' class='confirmer' value='Confirmer'>
                                         </div>
                                     </div>
@@ -210,6 +210,7 @@ error_reporting(0);
         
         <script>
         $(document).ready(function(){
+            $('.service').css('color', '#FF4A07');
             $(".modifier").click(function(){
                 var value = $(this).parents('div').find('.divIDCatalogue').text();
                 $(location).attr('href',"modifService.php?id="+value);

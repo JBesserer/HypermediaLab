@@ -377,6 +377,11 @@ form {
     display: none;
 }
 
+.divIDRabaisModalForm{
+    display: none;
+}
+
+
 #promotionIcon{
     background-color:antiquewhite;
     height: 47px; 

@@ -1,14 +1,14 @@
 <?php
 /****************************************************************
-		Fichier : service.php
+		Fichier : modifServiec.php
 		Auteur : Jeremy Besserer-Lemay
-		Fonctionnalité : Gestionnaire des services et promotions
-			Date: 2017-08-26
+		Fonctionnalité : Modification de service
+			Date: 2017-09-24
 
 			Vérification:
 
 			Historique de modifications:
-			2017-08-26      Jeremy Besserer-Lemay   1 Création
+			2017-09-24      Jeremy Besserer-Lemay   1 Création
  ******************************************************************/
 session_start();
 error_reporting(0);
@@ -67,7 +67,7 @@ error_reporting(0);
             
             echo"
             </div>
-            <div class='col-sm-12 col-md-12 col-lg-12'>
+            <div class='col-sm-12 col-md-12 col-lg-12 confirmPositioning'>
                 <input type='submit' id='confirmer' class='confirmer' value='Confirmer' required>
             </div>
         </div>

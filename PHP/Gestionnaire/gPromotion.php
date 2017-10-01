@@ -1,10 +1,13 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/****************************************************************
+		Fichier : gPromotion.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : gestionnaire des promotions
+			Date: 2017-10-01
+			
+			Dernière modification:
+			2017-10-01     Jeremy-Besserer-Lemay   1 Creation
+ ******************************************************************/
 require_once '../MoteurBD/moteurBD.php';
 
 class gPromotion {

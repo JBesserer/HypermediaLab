@@ -1,4 +1,13 @@
 <?php
+/****************************************************************
+		Fichier : cServicePromotion.php
+		Auteur : Jeremy Besserer-Lemay
+		Fonctionnalité : Controleur de la fenetre Service + Promotion
+			Date: 2017-09-30
+			
+			Dernière modification:
+			2017-09-30     Jeremy-Besserer-Lemay   1 Creation
+ ******************************************************************/
 require_once '../Gestionnaire/gServicePromotion.php';
 $gServicePromotion = new gServicePromotion();
 

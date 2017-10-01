@@ -1,14 +1,14 @@
 <?php
 /****************************************************************
-		Fichier : service.php
+		Fichier : promotion.php
 		Auteur : Jeremy Besserer-Lemay
-		Fonctionnalité : Gestionnaire des services et promotions
-			Date: 2017-08-26
+		Fonctionnalité : Page pour la gestion des promotions
+			Date: 2017-10-01
 
 			Vérification:
 
 			Historique de modifications:
-			2017-08-26      Jeremy Besserer-Lemay   1 Création
+			2017-10-01      Jeremy Besserer-Lemay   1 Création
  ******************************************************************/
 session_start();
 error_reporting(0);
@@ -94,7 +94,7 @@ error_reporting(0);
                                             <p> Entrer un code s'il est requis pour appliquer la promotion lors de la création de la facture. </p>
                                             <input type='text' name='codePromo' id='codePromo'>
                                         </div>
-                                        <div class='col-sm-12 col-md-12 col-lg-12'>
+                                        <div class='col-sm-12 col-md-12 col-lg-12 confirmPositioning'>
                                             <input type='submit' id='confirmer' class='confirmer' value='Confirmer'>
                                         </div>
                                     </div>
@@ -115,6 +115,7 @@ error_reporting(0);
         $(document).ready(function(){
             var resp = <?php echo json_encode($promotions);?>;
             var size = resp.length-1;
+            $('.promotionWindow').css('color', '#FF4A07');
             $(".ajouter").click(function(){   
                 size += 1;
                 $('.formWrapper').append('<div id="promotionCat"><div class="divIDRabaisModal"><input type="text" name="idRabaisModal'+size+'" id="idRabaisModal" placeholder="0"></div><div class="col-sm-6 col-md-6 col-lg-6 marginPromoTitre"><input type="text" required placeholder="Titre de la promotion" name="promoTitre'+size+'" required/></div><div class="col-sm-4 col-md-4 col-lg-4 marginPromoPercent"><input type="text" placeholder="Rabais" name="promoPercent'+size+'" pattern="^[1-9][0-9]?$|^100$" required/><span>%</span></div><div class="col-sm-2 col-md-2 col-lg-2"> </div></div>')

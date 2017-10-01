@@ -10,6 +10,7 @@
 
 			Historique de modifications:
 			2017-08-26      Jeremy Besserer-Lemay   1 Connexion et Client
+ *                      2017-09-28      Jeremy Besserer-Lemay   2 Consolidation des informations
  ******************************************************************/
 
 /**

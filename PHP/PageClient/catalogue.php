@@ -19,6 +19,9 @@ error_reporting(0);
         <title></title>
         <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
         <?php
@@ -34,13 +37,33 @@ error_reporting(0);
         {
         echo "
         <div id='produitCat'>
+            <div class='col-sm-3 col-md-3 col-lg-3'>
                 <img id='produitImage' src=". $services[$i]['image'].">
-                <p id='titreProd'>" . $services[$i]['service_titre']."</p> <br>
-                <p id='descProd'>".$services[$i]['service_description']."</p><br>
-                <pre id='tarif'> Tarif : ".$services[$i]['tarif']."$</pre> <pre id='duree'> Duree: ".$services[$i]['duree']."h </pre><img id='panierImg' src='../images/icones/panier.png'>
+            </div>
+            <div class='col-sm-7 col-md-7 col-lg-7'>
+                <div class='col-sm-12 col-md-12 col-lg-12'>
+                    <p id='titreProd'>" . $services[$i]['service_titre']."</p> <br>
+                    <p id='descProd'>".$services[$i]['service_description']."</p><br>
+                </div>
+                <div class='col-sm-6 col-md-6 col-lg-6'>
+                    <p id='tarif'> Tarif : ".$services[$i]['tarif']."$</p> 
+                </div>
+                <div class='col-sm-6 col-md-6 col-lg-6'>
+                    <p id='duree'> Duree: ".$services[$i]['duree']."h </p>
+                </div>
+            </div>
+            <div class='bottom-align-text col-sm-2 col-md-2 col-lg-2'>
+                <img id='panierImg' src='../images/icones/panier.png'>
+            </div>
         </div> ";
         }
         ?>
+        
+        <script>
+        $(document).ready(function(){
+            $('.catalogue').css('color', '#FF4A07');  
+        });
+        </script>
     </body>
 </html>
 

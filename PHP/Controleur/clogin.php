@@ -7,6 +7,7 @@
 			
 			Dernière modification:
 			2017-08-23      Jérémy Besserer-Lemay   1 Creation
+ *                      2017-09-29      Pierre-Marc Baril       2 Connexion fonctionnelle
  ******************************************************************/
     // Start the session
     session_start();

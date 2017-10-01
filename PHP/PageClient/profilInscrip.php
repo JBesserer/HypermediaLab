@@ -19,8 +19,14 @@ error_reporting(0);
         <title></title>
         <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
         <link rel="stylesheet" href="../css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+        <script>
+        $(document).ready(function(){
+            $('.profile').css('color', '#FF4A07');  
+        });
+        </script>
         <?php
         if($_SESSION["loggedIn"]== true){
             include ('../MoteurBD/moteurBD.php');
