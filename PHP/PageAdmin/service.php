@@ -22,6 +22,7 @@ error_reporting(0);
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../js/serviceBaseJS.js"></script>
     </head>
     <body>
         <?php
@@ -38,7 +39,7 @@ error_reporting(0);
         ?>
         
         <?php
-        echo "<div class='col-sm-12 col-md-12 col-lg-12 ajoutService'><a href='ajoutService.php' class='ajouter'>Ajouter un service</a></div>";
+        echo "<div class='col-sm-12 col-md-12 col-lg-12 ajoutService'><a href='#' class='ajouter'>Ajouter un service</a></div>";
         for($i = 0; $i < $max;$i++)
         {
         if(strcmp($services[$i]['actif'],'1')== 0){
@@ -50,17 +51,17 @@ error_reporting(0);
         }
         echo "
             <div class='divIDCatalogue'> 
-                <p>" . htmlentities(utf8_encode($services[$i]['pk_service']),0,'UTF-8')."</p>
+                <p>" . $services[$i]['pk_service']."</p>
             </div>
-            <div class='col-sm-3 col-md-3 col-lg-3'>
+            <div class='divImageService col-sm-3 col-md-3 col-lg-3'>
                 <img id='produitImage' src=". $services[$i]['image'].">
                 <br><br><br><br>
                 <p class='promotion'>Promotions</p>
             </div>
-            <div class='col-sm-7 col-md-7 col-lg-7'>
+            <div class='divContenuService col-sm-7 col-md-7 col-lg-7'>
                 <p id='titreProd'>" . $services[$i]['service_titre']."</p>
                 <p id='descProd'>".$services[$i]['service_description']."</p><br>
-                <p id='tarif'> Tarif : ".$services[$i]['tarif']."$</p> <p id='duree'> Duree: ".$services[$i]['duree']."h </p>";
+                <p id='tarif'> Tarif : ".$services[$i]['tarif']."<span>$</span></p> <p id='duree'> Duree: ".$services[$i]['duree']." <span>h</span></p>";
                 for($j = 0; $j < $maxRabais;$j++){
                     if(strcmp($services[$i]['pk_service'], $rabais[$j]['pk_service'])== 0){
                         $prixPercent = 100 * (float)$rabais[$j]['rabais'];
@@ -96,7 +97,7 @@ error_reporting(0);
                                     <p class='titreRabais'>" .$rabais[$j]['promotion_titre']."</p>
                                 </div>
                                 <div class='dropdown'>
-                                    <button class='btnDropdown' type='button' data-toggle='dropdown'>
+                                    <button class='btnDropdown dropdown-toggle' type='button' data-toggle='dropdown'>
                                     <span class='caret'></span></button>
                                     <ul class='dropdown-menu dropdown-menu-right'>
                                       <li><a href='#' class='modifierRabais' >Modifier la promotion</a></li>
@@ -104,71 +105,15 @@ error_reporting(0);
                                     </ul>
                                 </div>
                                 <a href='#' data-toggle='tooltip' data-placement='top' class='noDeco' title='".date_format($contractDateBegin, 'Y-m-d')." au ".date_format($contractDateEnd, 'Y-m-d')."'>
-                                <p id='promoNumberText'>" . $prixPercent."%</p>
-                                <div id='promotext'>
-                                    <p> promotion </p>
-                                </div>
+                                    <p id='promoNumberText'>" . $prixPercent."%</p>
+                                    <div id='promotext'>
+                                        <p> promotion </p>
+                                    </div>
                                 </a>
                             </div>";
                     }
                 }
-            echo "
-                            <div id='myModal' class='modal fade' role='dialog'>
-                              <div class='modal-dialog'>
-                                <div class='modal-content'>
-                                  <div class='modal-body'>
-                                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                                    <h4 class='modal-title'>Ajouter la période et un code pour appliquer la promotion choisie</h4>
-                                    <p>Le code n'est pas obligatoire et ne sera pas exigé si le champ est vide</p>
-                                    <form action='../Controleur/cServicePromotion.php' method='post' enctype='multipart/form-data'> 
-                                    <div id='produitCat'>
-                                        <div class='divIDRabaisModal'> 
-                                            <input type='text' name='idServiceModal' id='idServiceModal' placeholder='idServiceModal'>
-                                            <input type='text' name='idRabaisModal' id='idRabaisModal' placeholder='idRabaisModal'>
-                                            <input type='text' name='idPromoServiceModal' id='idPromoServiceModal' placeholder='idPromoServiceModal'>
-                                            <input type='text' name='percentSentData' id='percentSentData' placeholder='percentSentData'>
-                                        </div>
-                                        <div class='col-sm-12 col-md-12 col-lg-12'>
-                                            <p> Vous pouvez modifier les informations du service </p>
-                                            <p> Tous les champs sont obligatoires </p>
-                                        </div>
-                                        
-                                        <div class='col-sm-3 col-md-3 col-lg-3 modPercentageText'>
-                                            
-                                            <p id='promoNumberText' class='percentagePromotion'></p>
-                                            <select class='form-control selectPromo' name='selectPromo' required>
-                                            <option disabled selected>Choisir une promotion</option>
-                                        ";
-                                            for($x = 0; $x < $maxPromotions;$x++){
-                                                echo "<option>".$promotions[$x]['promotion_titre']."</option>";
-                                            }
-                                            
-            echo "
-                                            </select>
-                                        </div>
-                                        <div class='col-sm-9 col-md-9 col-lg-9'>
-                                            <p>Période de la promotion</p>
-                                            <input id='dateStart' name='dateStart' type='date' placeholder='Date de début' required>​<span> à </span>
-                                            <input id='dateEnd' name='dateEnd' type='date' placeholder='Date de fin' required>​
-                                            <p> Entrer un code s'il est requis pour appliquer la promotion lors de la création de la facture. </p>
-                                            <input type='text' name='codePromo' id='codePromo'>
-                                        </div>
-                                        <div class='col-sm-3 col-md-3 col-lg-3'>
-                                        </div>
-                                        <div class='col-sm-12 col-md-12 col-lg-12 confirmPositioning'>
-                                            <input type='submit' id='confirmer' class='confirmer' value='Confirmer'>
-                                        </div>
-                                    </div>
-                                    </form>
-                                    
-                                  </div>
-                                  <div class='modal-footer'>
-                                    <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                  </div>
-                                </div>
 
-                              </div>
-                            </div>"   ;
                 
                 
                 
@@ -206,105 +151,13 @@ error_reporting(0);
             }
             
         }
+        include ('../PageAdmin/modal.php');
+
+        include ('../PageAdmin/modalService.php');
         ?>
         
         <script>
         $(document).ready(function(){
-            $('.service').css('color', '#FF4A07');
-            $(".modifier").click(function(){
-                var value = $(this).parents('div').find('.divIDCatalogue').text();
-                $(location).attr('href',"modifService.php?id="+value);
-            });
-            
-            $(".desactiver").click(function(){
-                var value = $(this).parents('div').find('.divIDCatalogue').text();
-                $(location).attr('href',"../Controleur/cToggleService.php?id="+value);
-            }); 
-            
-            $(".ajouterPromoService").click(function(){
-                $('.percentagePromotion').html("0%");
-                var idService = $(this).parents('div').find('.divIDCatalogue').text();
-                var idRabais = $(this).parents('div').find('.divIDRabais').find('.idRabais').text();
-                var idPromoService = $(this).parents('div').find('.divIDRabais').find('.idPromoService').text();
-                
-                $('#idServiceModal').val(idService);
-                $('#idRabaisModal').val(idRabais);
-                $('#idPromoServiceModal').val(idPromoService);
-                $('select').attr('disabled',false);
-                $("#myModal").modal();
-            });
-            
-            $(".modifierRabais").click(function(){
-                var idService = $(this).parents('div').find('.divIDCatalogue').text();
-                var titreRabais = $(this).parents('div').find('.divIDRabais').find('.titreRabais').text();
-                var percentage = $(this).parents('div').find('#promotionIcon').find('#promoNumberText').text();
-                var idRabais = $(this).parents('div').find('.divIDRabais').find('.idRabais').text();
-                var idPromoService = $(this).parents('div').find('.divIDRabais').find('.idPromoService').text();
-                var dateStart = $(this).parents('div').find('.divIDRabais').find('.startDateRabais').text();
-                var dateEnd = $(this).parents('div').find('.divIDRabais').find('.endDateRabais').text();
-                
-                $("select option").each(function(){
-                    if($(this).val()==titreRabais){
-                        $(this).attr("selected","selected");    
-                    }
-                });
-                $('select').attr('disabled',true);
-                $('.percentagePromotion').html(percentage);
-                $('.idRabaisModal').html(idRabais);
-                $('.idPromoServiceModal').html(idPromoService);
-                
-                
-                $('#percentSentData').val(percentage);
-                $('#idServiceModal').val(idService);
-                $('#idRabaisModal').val(idRabais);
-                $('#idPromoServiceModal').val(idPromoService);
-                $('#dateStart').val(dateStart);
-                $('#dateEnd').val(dateEnd);
-                
-                $("#myModal").modal();
-            });  
-            
-            $(".supprimerRabais").click(function(){
-                var pkPromoService = $(this).parents('div').find('.divIDRabais').find('.idPromoService').text();
-                
-                if(confirm("Voulez-vous vraiment supprimer cette promotion liée a ce service?")){
-                    $(location).attr('href',"../Controleur/cServicePromotion.php?id="+pkPromoService+"&eventid=1");
-                }
-                else{
-                    return false;
-                }
-                
-            }); 
-            
-            $("form").submit(function(e){
-                var dateStart = $('#dateStart').val().replace('-','/').replace('-','/');
-                var dateEnd = $('#dateEnd').val().replace('-','/').replace('-','/');
-                if(dateStart >= dateEnd || dateEnd <= dateStart){
-                    e.preventDefault();
-                    alert("La date de départ ne peut pas être après la date de fin et vice versa.");
-                }   
-            });  
-            
-            $('#myModal').on('hidden.bs.modal', function (e) {
-            $(this)
-              .find("input[type=text],textarea,input[type=date]")
-                 .val('')
-                 .end()
-              .find("input[type=checkbox], input[type=radio]")
-                 .prop("checked", "")
-                 .end();
-                 // remove "selected" from any options that might already be selected
-                $('form option[selected="selected"]').each(
-                    function() {
-                        $(this).removeAttr('selected');
-                    }
-                );
-
-
-                // mark the first option as selected
-                $("formoption:first").attr('selected','selected');
-          ``});
-            
             $('select').on('change', function() {
                 var resp = <?php echo json_encode($promotions);?>;
                 
@@ -316,10 +169,10 @@ error_reporting(0);
                         $('#idRabaisModal').val(resp[x]['pk_promotion']);
                     }
                 }
-             })
-            $('[data-toggle="tooltip"]').tooltip();    
+             });
         });
         </script>
+
     </body>
 </html>
 

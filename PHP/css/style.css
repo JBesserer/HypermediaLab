@@ -166,7 +166,7 @@ form {
     color: #FF9F07;
 }
 
-#produitImage{
+#produitImage, #produitImageModal{
     float: left;
     width: 200px;
     height:150px;
@@ -365,22 +365,9 @@ form {
     background-color: #FF9F07 !important;
 }
 
-.divIDCatalogue{
+.divIDCatalogue, .divIDServiceModal, .divIDRabais, .divIDRabaisModal, .divIDRabaisModalForm{
     display: none;
 }
-
-.divIDRabais{
-    display: none;
-}
-
-.divIDRabaisModal{
-    display: none;
-}
-
-.divIDRabaisModalForm{
-    display: none;
-}
-
 
 #promotionIcon{
     background-color:antiquewhite;

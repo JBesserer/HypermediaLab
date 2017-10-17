@@ -1,32 +1,32 @@
 <?php
-/****************************************************************
-		Fichier : confirmation.php
-		Auteur : Pierre-Marc Baril
-		Fonctionnalité : Gestionnaire des confirmations d'achat
-			Date: 2017-08-26
-
-			Vérification:
-
-			Historique de modifications:
-			2017-08-26      Pierre-Marc Baril   1 Création
- ******************************************************************/
-<?php
 echo "
-        <div id='modalConfirmService' class='modal fade' role='dialog'>
+        <div id='modalService' class='modal fade' role='dialog'>
           <div class='modal-dialog modal-lg'>
             <div class='modal-content'>
               <div class='modal-body'>
                 <button type='button' class='close' data-dismiss='modal'>&times;</button>
                 <form id='formService' action='javascript:;' method='post' enctype='multipart/form-data' accept-charset='utf-8'> 
                     <div id='produitCat'>
+                        <div class='col-sm-12 col-md-12 col-lg-12'>
+                            <p> Vous pouvez modifier les informations du service </p>
+                            <p> Tous les champs sont obligatoires </p>
+                        </div>
                         <div class='divIDServiceModal'> 
                             <input type='text' value='0'name='idService' id='idService'>
                         </div>
+                        <div class='col-sm-3 col-md-3 col-lg-3'>
+                            <img id='produitImageModal' src='../images/services/cours.gif'>
+                            <label class='btn btn-default btn-file' for='file'>
+                                Mettre a jour l'image <input type='file' name='file' id='file' style='display: none;'>
+                            </label>
+                        </div>
                         <div class='col-sm-9 col-md-9 col-lg-9'>
-                            <p>Nom du service</p>
+                            <input type='text' name='nomService' id='nomService' placeholder='Nom du service' size='45' required><br>
+                            <textarea name='descService' id='descService' placeholder='Description du service' size='45' cols='40' rows='5' required></textarea> <br>
+                            <input type='text' name='heureService' id='heureService' placeholder='Nombre heures' size='30' pattern='\d+' required><span> h</span>
+                            <input type='text' name='tarifService' id='tarifService' placeholder='Tarif' size='30' pattern='\d*\.?\d*$' required> <span> $</span>
                         </div>
                         <div class='col-sm-3 col-md-3 col-lg-3'>
-                            <p>Prix du service</p>
                         </div>
                         <div class='col-sm-9 col-md-9 col-lg-9'>
                             <label><input type='checkbox' name='actif' id='actif'checked>Activer le service dans le catalogue</label>

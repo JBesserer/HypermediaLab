@@ -147,7 +147,7 @@ error_reporting(0);
               .find("input[type=text],textarea,input[type=date]")
                  .val('')
                  .end();
-          ``});
+          });
       
             $(".supprimerRabais").click(function(){
                 var idRabais = $(this).closest('div').parent().siblings('div.divIDRabaisModal').children('p').text();

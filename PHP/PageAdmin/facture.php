@@ -20,23 +20,7 @@ error_reporting(0);
         <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
         <link rel="stylesheet" href="../css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
-        $(document).ready(function(){
-            $('.facture').css('color', '#FF4A07');
-            $(".detail").click(function(){
-                var value = $(this).text();
-                
-                if(value === 'Détails'){
-                    $(this).html('Réduire');
-                    $(this).parents('div').find('.divItems').show();
-                } 
-                else{
-                    $(this).html('Détails');
-                    $(this).parents('div').find('.divItems').hide();
-                }
-            });
-        });
-        </script>
+        <script src="../js/toggleFacture.js"></script>
     </head>
     <body>
         <?php

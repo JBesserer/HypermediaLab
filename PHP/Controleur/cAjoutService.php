@@ -9,7 +9,6 @@
 			2017-09-25      Jeremy-Besserer-Lemay   1 Creation
  ******************************************************************/
 require_once '../Gestionnaire/gAjoutService.php';
-
 $infoService = [];  
 
 if ($_FILES["file"]["error"] > 0)
@@ -28,7 +27,6 @@ move_uploaded_file($_FILES['file']['tmp_name'], $image_dir. $_FILES['file']['nam
 
 $image = $image_dir . $_FILES['file']['name'];
 
-var_dump($image);
 $infoService[0] = $image;
 }
 
@@ -37,15 +35,12 @@ $infoService[2] = isset($_POST['descService']) ? $_POST['descService'] : null;
 $infoService[3] = isset($_POST['heureService']) ? $_POST['heureService'] : null;
 $infoService[4] = isset($_POST['tarifService']) ? $_POST['tarifService'] : null;
 
-var_dump($infoService);
 if (isset($_POST['actif'])) {
     $infoService[5] = "1";
 }
 else{
     $infoService[5] = "0";
 }
-var_dump($infoService);
-
 $response;
 $gService = new gAjoutService();
 
@@ -54,4 +49,3 @@ if(isset($infoService[0])){
 }else{
     $response = $gService->ajoutService($infoService);
 }
-

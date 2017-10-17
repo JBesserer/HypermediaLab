@@ -26,7 +26,8 @@ error_reporting(0);
     <body>
         <?php
         include ('../PageInject/EnteteClient.php');
-	include ('../MoteurBD/moteurBD.php');
+	    include ('../MoteurBD/moteurBD.php');
+
         $moteur = new moteurBD();
         $services = $moteur->populateCatalogue();
         $max = sizeof($services);
@@ -37,6 +38,9 @@ error_reporting(0);
         {
         echo "
         <div id='produitCat'>
+            <div class='divIDCatalogue'> 
+                <p>" . $services[$i]['pk_service']."</p>
+            </div>
             <div class='col-sm-3 col-md-3 col-lg-3'>
                 <img id='produitImage' src=". $services[$i]['image'].">
             </div>
@@ -53,10 +57,11 @@ error_reporting(0);
                 </div>
             </div>
             <div class='bottom-align-text col-sm-2 col-md-2 col-lg-2'>
-                <img id='panierImg' src='../images/icones/panier.png'>
+                <a href='#'><img id='panierImg' src='../images/icones/panier.png'></a>
             </div>
         </div> ";
         }
+
         ?>
         
         <script>
