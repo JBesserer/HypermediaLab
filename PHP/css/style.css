@@ -369,6 +369,19 @@ form {
     display: none;
 }
 
+.divIDRabais{
+    display: none;
+}
+
+.divIDRabaisModal{
+    display: none;
+}
+
+.divIDRabaisModalForm{
+    display: none;
+}
+
+
 #promotionIcon{
     background-color:antiquewhite;
     height: 47px; 
@@ -461,4 +474,34 @@ form {
 
 .glyphicon{
     color:#09AAC1;
+}
+
+.modalClient{
+    background: linear-gradient(#FFFAFB,#09AAc1);
+    display: -webkit-inline-box;
+    max-width: 400px;
+    border: 3px solid #ff9f07 !important;
+}
+
+.noir{
+    color: black;
+}
+
+.infoClientNoir{
+    color:black;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.infoClientBleu{
+    color:#09AAC1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.infoClientJaune{
+    color:#FF9F07;
+    font-size: 18px;
+    font-weight: bold;
 }

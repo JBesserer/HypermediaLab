@@ -69,6 +69,40 @@ class moteurBD {
 		
 	return $utilisateurCourant;
     }
+
+    //Verifie si l'utilisateur existe dans la base de donnees et retourne ses informations pour setter les informations dans la page
+    function websiteConnectionFacebook(connexion $infosConnexion)
+    {
+        $utilisateurCourant = new utilisateur();
+        $mysqli = $this->connection();
+
+        $mysqli->set_charset("utf8");
+
+        //MySqli Select Query
+        $results = $mysqli->query("SELECT * FROM utilisateur WHERE courriel = '" . $infosConnexion->getNomUtilisateur() . "'");
+
+        if(!$results)
+        {
+            die('Les informations specifies sont invalides.' . mysql_error());
+
+        }
+        else{
+
+            while ($row = $results->fetch_assoc()) {
+                $utilisateurCourant->setTypeUser($row["administrateur"]);
+            }
+        }
+
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+
+
+        return $utilisateurCourant;
+    }
+
     
 	/**
      * Retourne un client et ses infos
@@ -137,7 +171,7 @@ class moteurBD {
         $mysqli->set_charset("utf8");
 
         //MySqli Select Query
-        $results = $mysqli->query("SELECT facture.pk_facture,facture.date_service, facture.no_confirmation, ta_facture_service.tarif_facture, ta_facture_service.montant_rabais, client.prenom, client.nom, service.service_titre, promotion.promotion_titre, promotion.rabais FROM `ta_facture_service` JOIN facture ON facture.pk_facture = ta_facture_service.fk_facture JOIN client ON facture.fk_client = client.pk_client JOIN service ON service.pk_service = ta_facture_service.fk_service LEFT JOIN ta_promotion_service ON ta_promotion_service.fk_service = service.pk_service LEFT JOIN promotion ON promotion.pk_promotion = ta_promotion_service.fk_promotion ORDER BY facture.date_service DESC");
+        $results = $mysqli->query("SELECT facture.pk_facture,facture.date_service, facture.no_confirmation, ta_facture_service.tarif_facture, ta_facture_service.montant_rabais, client.pk_client, client.prenom, client.nom, service.service_titre, promotion.promotion_titre, promotion.rabais FROM `ta_facture_service` JOIN facture ON facture.pk_facture = ta_facture_service.fk_facture JOIN client ON facture.fk_client = client.pk_client JOIN service ON service.pk_service = ta_facture_service.fk_service LEFT JOIN ta_promotion_service ON ta_promotion_service.fk_service = service.pk_service LEFT JOIN promotion ON promotion.pk_promotion = ta_promotion_service.fk_promotion ORDER BY facture.date_service DESC");
 
         $allfacture = array();
         while ($row = $results->fetch_assoc()) {
@@ -149,6 +183,7 @@ class moteurBD {
                 'ta_facture_service.montant_rabais' => $row['montant_rabais'],
                 'client.prenom' => $row['prenom'],
                 'client.nom' => $row['nom'],
+                'pk_client' => $row['pk_client'],
                 'service.service_titre' => $row['service_titre'],
                 'promotion.promotion_titre' => $row['promotion_titre'],
                 'promotion.rabais' => $row['rabais']
@@ -546,6 +581,35 @@ class moteurBD {
         }
         return $erreur;
     }
+    
+    function getInfoClient($idClient){
+        
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+        
+        $results = $mysqli->query("SELECT c.prenom, c.nom, c.telephone, a.no_civique, a.code_postal, a.rue, v.ville  FROM client c INNER JOIN adresse a ON c.fk_adresse = a.pk_adresse INNER JOIN ville v ON v.pk_ville=a.fk_ville WHERE c.pk_client ='". $idClient ."'");
+        $infoClient = array();
+        while ($row = $results->fetch_assoc()) {
+            $infoClient[] = array(
+                'prenom' => $row['prenom'],
+                'nom' => $row['nom'],
+                'telephone' => $row['telephone'],
+                'no_civique' => $row['no_civique'],
+                'code_postal' => $row['code_postal'],
+                'rue' => $row['rue'],
+                'ville' => $row['ville']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $infoClient;
+        
+        
+    }
+    
     
     /**
      * Met à jour les informations d'un client

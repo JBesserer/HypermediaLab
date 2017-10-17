@@ -10,13 +10,11 @@
  ******************************************************************/
 require_once '../Gestionnaire/gServicePromotion.php';
 $gServicePromotion = new gServicePromotion();
-var_dump($_POST);
+
 $supprimerID = isset($_GET['eventid']) ? $_GET['eventid'] : null;
 if($supprimerID !== null){
     $pkServicePromotion = isset($_GET['id']) ? $_GET['id'] : null;
     $gServicePromotion->supprimerServicePromotion($pkServicePromotion);
-    header("Location: ../PageAdmin/service.php");
-
 }else{
 
 
@@ -40,3 +38,4 @@ if($infoServicePromotion[0] == null){
     $gServicePromotion->modifierServicePromotion($infoServicePromotion);
 }
 }
+header("Location: ../PageAdmin/service.php");
