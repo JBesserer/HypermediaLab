@@ -120,6 +120,7 @@ error_reporting(0);
         <script>
             $(document).ready(function(){
 
+
                 $('.facture').css('color', '#FF4A07');
                     $(".detail").click(function(){
                         var value = $(this).text();

@@ -91,6 +91,7 @@ if($utilisateurCourant->getTypeUser() != null)
         $_SESSION["typeUtilisateur"] = "User";
         $_SESSION["Courriel"] = $controlConn->getCourriel();
         $_SESSION["idClient"] = $moteur->getIdClient($_SESSION["Courriel"]);
+        $_SESSION["panierCount"] = 0;
         header("Location: http://localhost/PHP/PageClient/catalogue");
         exit;
     }

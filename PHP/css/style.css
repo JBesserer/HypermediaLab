@@ -80,7 +80,7 @@ header{
     margin-top: 15px;
 }
 
-.connexion, #inscrire{
+.connexion, #inscrire, .btnConfirm{
     background:url(../images/icones/bouton.png) no-repeat;
     cursor:pointer;
     color: #FFFAFB;
@@ -480,6 +480,12 @@ form {
     background: linear-gradient(#FFFAFB,#09AAc1);
     display: -webkit-inline-box;
     max-width: 400px;
+    border: 3px solid #ff9f07 !important;
+}
+
+.modalPanier{
+    display: -webkit-inline-box;
+    max-width: 600px;
     border: 3px solid #ff9f07 !important;
 }
 

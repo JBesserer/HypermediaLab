@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2017 at 08:41 PM
+-- Generation Time: Oct 30, 2017 at 03:44 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -39,7 +39,7 @@ CREATE TABLE `adresse` (
 --
 
 INSERT INTO `adresse` (`pk_adresse`, `no_civique`, `rue`, `fk_ville`, `code_postal`) VALUES
-(1, '335', 'King Ouest', 1, 'J1H3P9'),
+(1, '335', 'King Ouest', 3, 'J1H3P9'),
 (2, '1418', 'Bachand', 2, 'J2P3L4'),
 (3, '140', 'de la rivière', 3, 'J5K7N6'),
 (4, '25', 'Després', 4, 'J9S8K5'),
@@ -75,7 +75,8 @@ INSERT INTO `adresse` (`pk_adresse`, `no_civique`, `rue`, `fk_ville`, `code_post
 (34, '59', 'Pricipale', 4, 'J4F6H8'),
 (35, '789', 'Fontaine', 2, 'J4F6H8'),
 (36, '521', 'Maisonneuve', 5, 'J4F6H8'),
-(37, '12', 'Bowen', 2, 'J4F6H8');
+(37, '12', 'Bowen', 2, 'J4F6H8'),
+(38, '25', 'Lausanne', 1, 'J2M 1S9');
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`pk_client`, `fk_utilisateur`, `prenom`, `nom`, `fk_adresse`, `telephone`, `infolettre`) VALUES
-(1, 4, 'Didiera', 'Desrosiersa', 1, '819-565-1425', 1),
+(1, 4, 'Didier', 'Desrosier', 1, '819-565-1425', 1),
 (2, 5, 'Marc', 'Beaudoin', 1, '819-475-2142', 1),
 (3, 6, 'Carlos', 'Gendron', 2, '819-658-6325', 1),
 (4, 7, 'Geneviève', 'Pommerleau', 3, '819-145-5865', 0),
@@ -123,7 +124,8 @@ INSERT INTO `client` (`pk_client`, `fk_utilisateur`, `prenom`, `nom`, `fk_adress
 (23, 26, 'Martin', 'Marin', 8, '819-254-7474', 0),
 (24, 27, 'Claude', 'Lapointe', 7, '819-695-8747', 1),
 (25, 28, 'Matthew', 'Fréchette', 6, '819-222-2424', 0),
-(26, 29, 'Steve', 'Gates', 5, '819-666-6666', 1);
+(26, 29, 'Steve', 'Gates', 5, '819-666-6666', 1),
+(27, 32, 'Pierre-Marc', 'Baril', 38, '444-444-4444', 0);
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,8 @@ INSERT INTO `promotion` (`pk_promotion`, `promotion_titre`, `rabais`) VALUES
 (3, 'Rabais du printemps', '0.10'),
 (4, 'Rabais de Noël', '0.20'),
 (6, 'Rabais de bienvenue', '0.28'),
-(8, 'Rabais de beauté', '0.17');
+(8, 'Rabais de beauté', '0.18'),
+(9, 'Rabais jour', '0.22');
 
 -- --------------------------------------------------------
 
@@ -206,7 +209,7 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`pk_service`, `service_titre`, `service_description`, `duree`, `tarif`, `actif`, `image`) VALUES
-(1, 'Access 2016', 'Apprenez à  créer des bases de données simple et à  créer des applications personnalisées pour vous aider à gérer votre entreprise.', 16, '335.00', 0, '../images/services/CoursAccess.png'),
+(1, 'Access 2017', 'Apprenez à  créer des bases de données simple et à  créer des applications personnalisées pour vous aider à gérer votre entreprise.', 16, '335.00', 1, '../images/services/CoursAccess.png'),
 (2, 'Excel débutant', 'Ce cours a pour objectif de vous initier au chiffrier Excel, pour vous permettre de créer des classeurs et de les mettre en forme professionnellement.', 25, '200.00', 1, '../images/services/CoursExcel.png'),
 (3, 'Initiation à la photographie numérique', 'Étudiez les concepts de base en photographie tel que les différentes prises de vue, le cadrage et l\'éclairage. Apprenez à utiliser les différents modes de votre appareil photo numérique et commencez à faire de la retouche photo avec Photoshop. La formation comprend des exercices en studio et à l’extérieur. ', 14, '280.00', 1, '../images/services/Photo.png'),
 (4, 'Matériel informatique', 'Étudiez les composantes d’un ordinateur PC compatible. Effectuez le montage et la configuration d’un ordinateur. Apprenez à établir un diagnostic et à réparer un ordinateur. La formation comprend des laboratoires pratiques.', 16, '320.00', 1, '../images/services/hardware-cours.png'),
@@ -217,7 +220,23 @@ INSERT INTO `service` (`pk_service`, `service_titre`, `service_description`, `du
 (9, 'Office 365', 'Suivez la formation sur Microsoft Office 365 dont vous avez besoin. Développez les compétences nécessaires pour configurer et gérer Microsoft Office 365 pour votre organisation.', 12, '360.00', 1, '../images/services/office-365.jpg'),
 (10, 'Word 2016', 'Apprenez à créer des documents soignés avec Word en utilisant efficacement les outils de mise en forme et les tableaux. Gérez la rédaction de plusieurs lettres et l’impression d’étiquettes à différents destinataires et apprenez à créer des modèles pour simplifier votre travail ou pour créer des formulaires personnalisés.', 320, '160.00', 1, '../images/services/coursword.png'),
 (11, 'Initiation à internet et aux courriels', 'Apprenez à naviguer sur Internet. Vous y découvrirez une source d\'information incroyable. De plus, apprenez à communiquer avec vos amis avec des courriels.', 5, '75.00', 1, '../images/services/cours.gif'),
-(12, 'Excel intermédiaire', 'Ce cours a pour objectif d\'approfondir vos acquis en Excel, introduire les fonctions, les graphiques et les fonctionnalités plus pointues du logiciel.', 25, '200.00', 1, '../images/services/CoursExcel.png');
+(12, 'Excel intermédiaire', 'Ce cours a pour objectif d\'approfondir vos acquis en Excel, introduire les fonctions, les graphiques et les fonctionnalités plus pointues du logiciel.', 25, '200.00', 1, '../images/services/CoursExcel.png'),
+(19, 'Creme brulée', 'pew pew pew pew', 350, '240.00', 1, '../images/services/avizo-logo.png'),
+(20, 'DESTROOOOOYYY', 'plz god, just work', 350, '400.00', 1, '../images/services/download.png'),
+(21, 'Creme brulée', 'OHHHHH SHIZZZZZ', 350, '34.00', 1, '../images/services/download.png'),
+(22, 'my comprehension slowly lowers', 'YAYYYY', 300, '140.00', 1, '../images/services/avizo-logo.png'),
+(23, 'GOD PLZ', 'CMOOOOONNN', 6006, '666.00', 1, '../images/services/avizo-logo.png'),
+(24, 'pew pew pew', 'dhahaerharhrah', 555, '600.00', 1, '../images/services/avizo-logo.png'),
+(25, 'I CANT ANYMORE', 'pew pew pew', 444, '444.00', 1, '../images/services/download.png'),
+(26, 'love me babeh', 'ohhhh yeahhh', 66, '66.00', 1, '../images/services/15.png'),
+(27, 'Bonjourno', 'so right', 333, '333.00', 1, '../images/services/download.png'),
+(28, 'BONJOURNO', 'aaaaaa', 111, '111.00', 1, '../images/services/download.png'),
+(29, 'god made us so we could suffer', 'rip boys', 123, '123.00', 1, '../images/services/avizo-logo.png'),
+(30, 'I live to be a mermaid', 'swim swim swim', 334, '342.00', 1, '../images/services/download.png'),
+(31, 'Creme brulée', 'CREME SO BURNED', 111, '111.00', 1, '../images/services/avizo-logo.png'),
+(32, 'HELLO', 'FRIENDSSSDSD', 111, '111.00', 1, '../images/services/download.png'),
+(33, 'AAAAAABBBBCCCCC', 'AAAAA', 11, '11.00', 1, '../images/services/avizo-logo.png'),
+(34, 'brahbrah', 'dfafadf', 555, '666.00', 1, '../images/services/avizo-logo.png');
 
 -- --------------------------------------------------------
 
@@ -281,18 +300,10 @@ CREATE TABLE `ta_promotion_service` (
 INSERT INTO `ta_promotion_service` (`pk_promotion_service`, `fk_promotion`, `fk_service`, `date_debut`, `date_fin`, `code`) VALUES
 (1, 1, 7, '2016-08-01 00:00:00', '2016-09-30 00:00:00', 'rentree2016'),
 (2, 2, 4, '2017-09-21 00:00:00', '2017-10-02 00:00:00', ''),
-(19, 8, 1, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(20, 8, 2, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(21, 8, 3, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(22, 8, 4, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(23, 8, 5, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(24, 8, 6, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(25, 8, 7, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(26, 8, 8, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(27, 8, 9, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(28, 8, 10, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(29, 8, 11, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412'),
-(30, 8, 12, '2017-10-11 00:00:00', '2017-10-24 00:00:00', 'sss412');
+(20, 4, 2, '2017-10-16 00:00:00', '2017-10-29 00:00:00', 'cft567'),
+(45, 1, 33, '2017-10-10 00:00:00', '2017-10-26 00:00:00', ''),
+(46, 1, 28, '2017-10-17 00:00:00', '2017-10-24 00:00:00', ''),
+(47, 4, 1, '2017-10-30 00:00:00', '2017-11-04 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -342,7 +353,8 @@ INSERT INTO `utilisateur` (`pk_utilisateur`, `courriel`, `mot_de_passe`, `admini
 (28, 'mathetfr@videotron.ca', 'carottecuite', 0),
 (29, 'alainD567@hotmail.com', 'feveaulard', 0),
 (30, 'systeme.d@videotron.ca', 'questcequonmange', 0),
-(31, 'code18@hotmail.com', 'jaifaim', 0);
+(31, 'code18@hotmail.com', 'jaifaim', 0),
+(32, 'acktyne@gmail.com', 'basket123', 0);
 
 -- --------------------------------------------------------
 
@@ -445,12 +457,12 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT for table `adresse`
 --
 ALTER TABLE `adresse`
-  MODIFY `pk_adresse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `pk_adresse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `pk_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `pk_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `facture`
 --
@@ -465,7 +477,7 @@ ALTER TABLE `promotion`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `pk_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `pk_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `ta_facture_service`
 --
@@ -475,12 +487,12 @@ ALTER TABLE `ta_facture_service`
 -- AUTO_INCREMENT for table `ta_promotion_service`
 --
 ALTER TABLE `ta_promotion_service`
-  MODIFY `pk_promotion_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pk_promotion_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `pk_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `pk_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `ville`
 --
@@ -521,7 +533,7 @@ ALTER TABLE `ta_facture_service`
 --
 ALTER TABLE `ta_promotion_service`
   ADD CONSTRAINT `fk_promotion` FOREIGN KEY (`fk_promotion`) REFERENCES `promotion` (`pk_promotion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_service` FOREIGN KEY (`fk_service`) REFERENCES `service` (`pk_service`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_service` FOREIGN KEY (`fk_service`) REFERENCES `service` (`pk_service`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

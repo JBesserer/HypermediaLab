@@ -664,4 +664,30 @@ class moteurBD {
         
         return $erreur;
     }
+
+    //TO DO, MY FRIENDO!
+    function selectPromoCode($code){
+        $mysqli = $this->connection();
+        $mysqli->set_charset("utf8");
+
+        $results = $mysqli->query("SELECT c.prenom, c.nom, c.telephone, a.no_civique, a.code_postal, a.rue, v.ville  FROM client c INNER JOIN adresse a ON c.fk_adresse = a.pk_adresse INNER JOIN ville v ON v.pk_ville=a.fk_ville WHERE c.pk_client ='". $idClient ."'");
+        $infoClient = array();
+        while ($row = $results->fetch_assoc()) {
+            $infoClient[] = array(
+                'prenom' => $row['prenom'],
+                'nom' => $row['nom'],
+                'telephone' => $row['telephone'],
+                'no_civique' => $row['no_civique'],
+                'code_postal' => $row['code_postal'],
+                'rue' => $row['rue'],
+                'ville' => $row['ville']
+            );
+        }
+        // Frees the memory associated with a result
+        $results->free();
+
+        // close connection
+        $mysqli->close();
+        return $infoClient;
+    }
 }//fin de la classe moteurBD
